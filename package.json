@@ -1,0 +1,17 @@
+{
+  "name": "kabita-mobile-redesign",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A static, responsive redesign project for KABITA MOBILE STORES.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node scripts/server.mjs",
+    "start": "node scripts/server.mjs",
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "npm run build && npm run check"
+  }
+}

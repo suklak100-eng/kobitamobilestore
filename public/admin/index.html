@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#f5f2ea">
+  <title>Admin · KABITA MOBILE STORES</title>
+  <link rel="icon" href="/assets/kabita-logo.png" type="image/png">
+  <link rel="stylesheet" href="/admin/admin.css">
+  <script src="/admin/admin.js" defer></script>
+</head>
+<body>
+  <main class="login-shell" id="login-screen" hidden>
+    <section class="login-card" aria-labelledby="login-title">
+      <a class="admin-brand" href="/" aria-label="KABITA MOBILE STORES home"><img src="/assets/kabita-logo.png" alt=""><span><strong>KABITA</strong><small>MOBILE STORES</small></span></a>
+      <p class="eyebrow">SHOP MANAGEMENT</p>
+      <h1 id="login-title">Admin sign in</h1>
+      <p class="login-intro">সাইটের লেখা, ফোনের catalogue, ছবি ও দোকানের তথ্য manage করতে লগইন করুন।</p>
+      <form id="login-form" autocomplete="on">
+        <label>Username<input name="username" autocomplete="username" required></label>
+        <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+        <button class="button button--primary" type="submit">লগইন করুন <span aria-hidden="true">→</span></button>
+        <p class="form-error" id="login-error" role="alert" hidden></p>
+      </form>
+      <a class="back-link" href="/">← মূল ওয়েবসাইটে ফিরুন</a>
+    </section>
+  </main>
+
+  <div class="admin-shell" id="dashboard" hidden>
+    <header class="admin-topbar">
+      <a class="admin-brand" href="/" aria-label="KABITA MOBILE STORES home"><img src="/assets/kabita-logo.png" alt=""><span><strong>KABITA</strong><small>STORE DESK</small></span></a>
+      <div class="top-actions"><a class="button button--quiet" href="/" target="_blank" rel="noopener">ওয়েবসাইট দেখুন ↗</a><button class="button button--primary" id="save-all" type="button">পরিবর্তন সেভ করুন</button><button class="icon-button" id="logout" type="button">লগআউট</button></div>
+    </header>
+    <div class="admin-heading"><div><p class="eyebrow">KABITA MOBILE STORES · CONTROL PANEL</p><h1>আপনার দোকান,<br><em>আপনার ওয়েবসাইট।</em></h1><p>এখানকার পরিবর্তন সংরক্ষণ করলে ওয়েবসাইট নতুন তথ্য দিয়ে তৈরি হবে।</p></div><div class="save-status" id="save-status" role="status">পরিবর্তন লোড হচ্ছে…</div></div>
+    <nav class="admin-tabs" aria-label="Admin sections" role="tablist">
+      <button type="button" class="is-active" data-tab="shop" role="tab" aria-selected="true">দোকান ও হোম</button>
+      <button type="button" data-tab="catalog" role="tab" aria-selected="false">ফোনের catalogue</button>
+      <button type="button" data-tab="posts" role="tab" aria-selected="false">পোস্ট</button>
+      <button type="button" data-tab="photos" role="tab" aria-selected="false">ছবি ও gallery</button>
+      <button type="button" data-tab="content" role="tab" aria-selected="false">ব্র্যান্ড ও লেখা</button>
+      <button type="button" data-tab="backup" role="tab" aria-selected="false">Backup</button>
+    </nav>
+    <div class="admin-alert" id="admin-alert" role="status" hidden></div>
+
+    <section class="admin-panel is-active" data-panel="shop" role="tabpanel">
+      <div class="panel-heading"><div><p class="eyebrow">01 · BUSINESS DETAILS</p><h2>দোকান ও হোমপেজ</h2></div><p>নাম, যোগাযোগ, হিরো লেখা এবং রং এখান থেকে বদলান।</p></div>
+      <div class="field-grid">
+        <label>দোকানের নাম<input data-bind="business.name" maxlength="100"></label>
+        <label>ফোন নম্বর<input data-bind="business.phone" inputmode="tel" maxlength="20"></label>
+        <label class="field-wide">সম্পূর্ণ ঠিকানা<input data-bind="business.address" maxlength="300"></label>
+        <label>ছোট location label<input data-bind="business.addressShort" maxlength="120"></label>
+        <label>সাইটে দেখানো খোলার সময়<input data-bind="business.hours" maxlength="100"></label>
+        <label>Google Maps directions URL<input data-bind="business.map" type="url"></label>
+        <label>Google Maps place URL<input data-bind="business.mapSearch" type="url"></label>
+        <label>Google review দেখার URL<input data-bind="business.reviewLink" type="url"></label>
+        <label>Google review লেখার URL<input data-bind="business.reviewWriteLink" type="url"></label>
+        <label>Review score<input data-bind="business.reviewScore" inputmode="decimal"></label>
+        <label>Review count label<input data-bind="business.reviewCount" maxlength="20"></label>
+        <label>WhatsApp নম্বর (country code-সহ)<input data-bind="business.whatsappNumber" inputmode="tel" maxlength="20" placeholder="9199…"></label>
+        <label class="field-wide">WhatsApp-এ আগে থেকে লেখা বাংলা message<textarea data-bind="business.whatsappMessage" rows="3" maxlength="500"></textarea></label>
+      </div>
+      <div class="section-card"><div class="section-card-head"><div><h3>হোমপেজের হিরো</h3><p>প্রথম পর্দার শিরোনাম, বর্ণনা ও supporting line।</p></div></div>
+        <div class="field-grid">
+          <label>ছোট লাইন · English<input data-bind="hero.eyebrow" maxlength="100"></label>
+          <label>ছোট লাইন · বাংলা<input data-bind="hero.eyebrowBn" maxlength="100"></label>
+          <label>শিরোনাম ১ · English<input data-bind="hero.titleLead" maxlength="100"></label>
+          <label>শিরোনাম ১ · বাংলা<input data-bind="hero.titleLeadBn" maxlength="100"></label>
+          <label>শিরোনাম ২ · English<input data-bind="hero.titleAccent" maxlength="100"></label>
+          <label>শিরোনাম ২ · বাংলা<input data-bind="hero.titleAccentBn" maxlength="100"></label>
+          <label>শিরোনাম ৩ · English<input data-bind="hero.titleEnd" maxlength="100"></label>
+          <label>শিরোনাম ৩ · বাংলা<input data-bind="hero.titleEndBn" maxlength="100"></label>
+          <label class="field-wide">বর্ণনা · English<textarea data-bind="hero.lede" rows="3" maxlength="500"></textarea></label>
+          <label class="field-wide">বর্ণনা · বাংলা<textarea data-bind="hero.ledeBn" rows="3" maxlength="500"></textarea></label>
+          <label class="field-wide">ছোট supporting line · English<textarea data-bind="hero.supportingEn" rows="2" maxlength="500"></textarea></label>
+          <label class="field-wide">ছোট supporting line · বাংলা<textarea data-bind="hero.supportingBn" rows="2" maxlength="500"></textarea></label>
+        </div>
+      </div>
+      <div class="section-card"><div class="section-card-head"><div><h3>Logo, hero photo ও brand colour</h3><p>JPG, PNG বা WebP · সর্বোচ্চ 12 MB প্রতি ছবি।</p></div></div>
+        <div class="upload-row"><label>নতুন logo upload<input type="file" id="logo-upload" accept="image/jpeg,image/png,image/webp"></label><img id="logo-preview" class="asset-preview" alt="বর্তমান logo"></div>
+        <div class="upload-row"><label>নতুন hero photo upload<input type="file" id="hero-upload" accept="image/jpeg,image/png,image/webp"></label><img id="hero-preview" class="asset-preview asset-preview--wide" alt="বর্তমান hero photo"></div>
+        <div class="field-grid color-fields"><label>Orange accent<input data-bind="theme.orange" type="color"></label><label>Dark orange for text<input data-bind="theme.orangeDeep" type="color"></label></div>
+      </div>
+    </section>
+
+    <section class="admin-panel" data-panel="catalog" role="tabpanel" hidden>
+      <div class="panel-heading"><div><p class="eyebrow">02 · PHONE CATALOGUE</p><h2>আপনার ফোন ও দাম</h2></div><button class="button button--primary" id="add-product" type="button">＋ নতুন ফোন যোগ করুন</button></div>
+      <p class="notice">এই তালিকায় যা publish করবেন, সেটাই public catalogue-এ দেখাবে। দাম ও stock নিজেরা যাচাই করে update করুন। কোনো checkout বা payment নেই।</p>
+      <div id="product-list" class="managed-list"></div>
+      <form id="product-form" class="editor-card" hidden></form>
+    </section>
+
+    <section class="admin-panel" data-panel="posts" role="tabpanel" hidden>
+      <div class="panel-heading"><div><p class="eyebrow">03 · POSTS</p><h2>পোস্ট ও update</h2></div><button class="button button--primary" id="add-post" type="button">＋ নতুন পোস্ট</button></div>
+      <div id="post-list" class="managed-list"></div>
+      <form id="post-form" class="editor-card" hidden></form>
+    </section>
+
+    <section class="admin-panel" data-panel="photos" role="tabpanel" hidden>
+      <div class="panel-heading"><div><p class="eyebrow">04 · PHOTO ARCHIVE</p><h2>ছবি ও gallery</h2></div><label class="button button--primary file-button">ছবি upload<input type="file" id="gallery-upload" accept="image/jpeg,image/png,image/webp" multiple></label></div>
+      <p class="notice">Gallery থেকে remove করলে ছবিটি public site-এ আর দেখাবে না। আগে upload করা ফাইল সার্ভারে থাকবে।</p>
+      <div id="gallery-grid" class="managed-gallery"></div>
+    </section>
+
+    <section class="admin-panel" data-panel="content" role="tabpanel" hidden>
+      <div class="panel-heading"><div><p class="eyebrow">05 · CONTENT & CLAIMS</p><h2>ব্র্যান্ড, service ও লেখা</h2></div><p>প্রতি লাইনে একটি item লিখুন।</p></div>
+      <div class="section-card"><h3>Brand ও finance partner</h3><div class="field-grid"><label>Authorised dealer brand<textarea data-list="authorizedBrands" rows="4"></textarea></label><label>অন্যান্য featured brand<textarea data-list="otherFeaturedBrands" rows="4"></textarea></label><label class="field-wide">Finance partner<textarea data-list="financePartners" rows="3"></textarea></label></div></div>
+      <div class="section-card"><h3>দোকানের service / claim</h3><label>প্রতি লাইনে একটি বিষয়<textarea data-list="shopClaims" rows="7"></textarea><small>শুধু মালিকের কাছ থেকে নিশ্চিত claim প্রকাশ করুন।</small></label></div>
+      <div class="section-card"><h3>Google review quotes</h3><p>শুধু সত্যিকারের public review quote দিন। “+ Add review” দিয়ে নতুন quote যোগ করুন।</p><div id="review-list" class="managed-list"></div><button class="button button--quiet" id="add-review" type="button">＋ Review quote যোগ করুন</button></div>
+      <div class="section-card"><h3>খোলার সময় · সপ্তাহের সাত দিন</h3><div id="hours-grid" class="field-grid"></div></div>
+      <div class="section-card"><h3>Privacy policy</h3><p>প্রতি অংশের শিরোনাম ও লেখা edit করুন। অনুচ্ছেদ আলাদা করতে ফাঁকা লাইন দিন।</p><div id="privacy-editor" class="managed-list"></div></div>
+    </section>
+
+    <section class="admin-panel" data-panel="backup" role="tabpanel" hidden>
+      <div class="panel-heading"><div><p class="eyebrow">06 · BACKUP & ACCESS</p><h2>Backup ও নিরাপত্তা</h2></div></div>
+      <div class="section-card backup-card"><h3>আপনার ওয়েবসাইটের backup</h3><p>সাইটের edit করা লেখা, catalogue, hours ও gallery তালিকা JSON file হিসেবে download করুন।</p><button class="button button--primary" id="export-backup" type="button">Backup download</button><label class="button button--quiet file-button">Backup restore<input type="file" id="import-backup" accept="application/json"></label></div>
+      <div class="section-card"><h3>Admin login</h3><p>Public hosting-এ দেওয়ার আগে server-এর ADMIN_USERNAME, ADMIN_PASSWORD ও SESSION_SECRET অবশ্যই বদলাতে হবে। Public server local demo password দিয়ে চালু হতে দেবে না।</p></div>
+      <div class="section-card"><h3>Public URL</h3><p>এই local admin URL: <code>/admin/</code>. Login না থাকলে editor data দেখা যায় না।</p></div>
+    </section>
+    <footer class="admin-footer"><span>KABITA MOBILE STORES · Admin</span><button class="button button--primary" id="save-bottom" type="button">পরিবর্তন সেভ করুন</button></footer>
+  </div>
+</body>
+</html>

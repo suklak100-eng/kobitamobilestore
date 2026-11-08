@@ -1,0 +1,1172 @@
+{
+  "business": {
+    "name": "KABITA MOBILE STORES",
+    "phone": "9932557023",
+    "tel": "tel:9932557023",
+    "address": "Bazar, Arshikari Road, opp. Panchayat Office, Bithari, West Bengal, 743286",
+    "addressShort": "Bithari, West Bengal, 743286",
+    "hours": "Every day · 8am–10pm",
+    "map": "https://www.google.com/maps/dir/?api=1&destination=KABITA+MOBILE+STORES%2C+Bazar%2C+Arshikari+Road%2C+opp.+Panchayat+Office%2C+Bithari%2C+West+Bengal%2C+743286&destination_place_id=ChIJD-K6Zp1P_zkRUo_E7Ep3JwY",
+    "mapSearch": "https://www.google.com/maps/search/?api=1&query=KABITA+MOBILE+STORES%2C+Bazar%2C+Arshikari+Road%2C+opp.+Panchayat+Office%2C+Bithari%2C+West+Bengal%2C+743286&query_place_id=ChIJD-K6Zp1P_zkRUo_E7Ep3JwY",
+    "reviewLink": "https://www.google.com/maps/search/?api=1&query=Google&query_place_id=ChIJD-K6Zp1P_zkRUo_E7Ep3JwY",
+    "reviewWriteLink": "https://search.google.com/local/writereview?placeid=ChIJD-K6Zp1P_zkRUo_E7Ep3JwY",
+    "logo": "/assets/kabita-logo.png",
+    "reviewScore": "4.9",
+    "reviewCount": "94+",
+    "whatsappNumber": "919932557023",
+    "whatsappMessage": "নমস্কার, KABITA MOBILE STORES। একটি ফোন সম্পর্কে জানতে চাই। অনুগ্রহ করে মডেল, বর্তমান দাম ও উপলভ্যতা জানাবেন? ধন্যবাদ।"
+  },
+  "hoursByDay": [
+    [
+      "Monday",
+      "8am–10pm"
+    ],
+    [
+      "Tuesday",
+      "8am–10pm"
+    ],
+    [
+      "Wednesday",
+      "8am–10pm"
+    ],
+    [
+      "Thursday",
+      "8am–10pm"
+    ],
+    [
+      "Friday",
+      "8am–10pm"
+    ],
+    [
+      "Saturday",
+      "8am–10pm"
+    ],
+    [
+      "Sunday",
+      "8am–10pm"
+    ]
+  ],
+  "authorizedBrands": [
+    "Vivo",
+    "Oppo",
+    "Samsung",
+    "Tecno"
+  ],
+  "otherFeaturedBrands": [
+    "Redmi",
+    "Realme",
+    "iPhone"
+  ],
+  "financePartners": [
+    "Bajaj Finance",
+    "TVS Finance",
+    "HDB Finance"
+  ],
+  "shopClaims": [
+    "Branded mobile phones",
+    "Easy finance (EMI)",
+    "100% original products",
+    "After-sales service",
+    "Old phone exchange",
+    "Lowest-price guarantee",
+    "Prices lower than online"
+  ],
+  "reviews": [
+    {
+      "name": "Masud Sardar",
+      "date": "September 15, 2026",
+      "quote": "Good price and good behave"
+    },
+    {
+      "name": "Abhick Mondal",
+      "date": "September 12, 2026",
+      "quote": "This shop's is verry nice and this shop owner and staff behave is so good"
+    },
+    {
+      "name": "Montu Gazi",
+      "date": "August 31, 2026",
+      "quote": "Best Service Best price Love you dada"
+    },
+    {
+      "name": "Ajet Gazi",
+      "date": "August 29, 2026",
+      "quote": "Valo service Valo collection"
+    }
+  ],
+  "posts": [
+    {
+      "slug": "স-র-দ-ম-স-র-ফ-ন-নত-ন-ম-ব-ইল-কম-দ-ম-এখ-ন-ই-প-ব-ন-vivo-oppo-samsung-redmi-real__8414388324232134440",
+      "title": "সেরা দামে সেরা ফোন 🔥",
+      "date": "2025-03-17",
+      "dateLabel": "March 17, 2025",
+      "lines": [
+        "📢 নতুন মোবাইল? কম দামে? এখানেই পাবেন!",
+        "🔹 Vivo, Oppo, Samsung, Redmi, Realme,iPhone & আরও ব্র্যান্ড",
+        "🔹 EMI সুবিধা, এক্সচেঞ্জ অফার & আকর্ষণীয় ছাড়",
+        "🔹 ১০০% জেনুইন প্রোডাক্ট + বেস্ট আফটার সেল সার্ভিস",
+        "✅ ফোন কেনার আগে একবার আমাদের দেখুন!"
+      ]
+    }
+  ],
+  "products": [],
+  "catalogMode": "samples",
+  "gallery": [
+    {
+      "src": "/assets/gallery/photo-001.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-002.jpg",
+      "width": 506,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-003.jpg",
+      "width": 900,
+      "height": 578,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-004.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-005.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-006.jpg",
+      "width": 900,
+      "height": 506,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-007.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-008.jpg",
+      "width": 900,
+      "height": 720,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-009.png",
+      "width": 900,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-010.png",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-011.png",
+      "width": 900,
+      "height": 600,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-012.png",
+      "width": 900,
+      "height": 600,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-013.jpg",
+      "width": 506,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-014.png",
+      "width": 900,
+      "height": 600,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-015.jpg",
+      "width": 506,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-016.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-017.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-018.jpg",
+      "width": 386,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-019.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-020.jpg",
+      "width": 900,
+      "height": 407,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-021.jpg",
+      "width": 469,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-022.jpg",
+      "width": 651,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-023.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-024.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-025.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-026.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-027.jpg",
+      "width": 900,
+      "height": 416,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-028.jpg",
+      "width": 900,
+      "height": 416,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-029.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-030.jpg",
+      "width": 900,
+      "height": 579,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-031.jpg",
+      "width": 469,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-032.jpg",
+      "width": 469,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-033.jpg",
+      "width": 506,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-034.jpg",
+      "width": 678,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-035.jpg",
+      "width": 678,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-036.jpg",
+      "width": 678,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-037.jpg",
+      "width": 678,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-038.jpg",
+      "width": 714,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-039.jpg",
+      "width": 678,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-040.jpg",
+      "width": 720,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-041.jpg",
+      "width": 720,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-042.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-043.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-044.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-045.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-046.jpg",
+      "width": 506,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-047.jpg",
+      "width": 506,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-048.jpg",
+      "width": 506,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-049.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-050.jpg",
+      "width": 677,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-051.jpg",
+      "width": 900,
+      "height": 865,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-052.jpg",
+      "width": 506,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-053.jpg",
+      "width": 469,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-054.jpg",
+      "width": 600,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-055.jpg",
+      "width": 469,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-056.jpg",
+      "width": 900,
+      "height": 579,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-057.jpg",
+      "width": 900,
+      "height": 463,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-058.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-059.jpg",
+      "width": 900,
+      "height": 410,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-060.jpg",
+      "width": 559,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-061.jpg",
+      "width": 900,
+      "height": 409,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-062.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-063.jpg",
+      "width": 678,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-064.jpg",
+      "width": 403,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-065.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-066.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-067.jpg",
+      "width": 506,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-068.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-069.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-070.jpg",
+      "width": 900,
+      "height": 675,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-071.jpg",
+      "width": 600,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-072.jpg",
+      "width": 900,
+      "height": 577,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-073.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-074.jpg",
+      "width": 729,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-075.jpg",
+      "width": 383,
+      "height": 690,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-076.jpg",
+      "width": 711,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-077.jpg",
+      "width": 742,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-078.jpg",
+      "width": 900,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-079.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-080.jpg",
+      "width": 506,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-081.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-082.jpg",
+      "width": 506,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-083.jpg",
+      "width": 900,
+      "height": 506,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-084.png",
+      "width": 600,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-085.jpg",
+      "width": 900,
+      "height": 675,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-086.jpg",
+      "width": 729,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-087.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-088.jpg",
+      "width": 600,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-089.jpg",
+      "width": 900,
+      "height": 577,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-090.jpg",
+      "width": 569,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-091.jpg",
+      "width": 469,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-092.jpg",
+      "width": 900,
+      "height": 675,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-093.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-094.jpg",
+      "width": 900,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-095.jpg",
+      "width": 506,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-096.jpg",
+      "width": 900,
+      "height": 578,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-097.jpg",
+      "width": 900,
+      "height": 755,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-098.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-099.jpg",
+      "width": 900,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-100.jpg",
+      "width": 506,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-101.jpg",
+      "width": 506,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-102.jpg",
+      "width": 506,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-103.jpg",
+      "width": 506,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-104.jpg",
+      "width": 506,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-105.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-106.jpg",
+      "width": 677,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-107.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-108.jpg",
+      "width": 469,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-109.jpg",
+      "width": 469,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-110.jpg",
+      "width": 720,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-111.jpg",
+      "width": 900,
+      "height": 579,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-112.jpg",
+      "width": 900,
+      "height": 579,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-113.jpg",
+      "width": 900,
+      "height": 865,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-114.jpg",
+      "width": 736,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-115.jpg",
+      "width": 506,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-116.jpg",
+      "width": 469,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-117.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-118.jpg",
+      "width": 600,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-119.jpg",
+      "width": 469,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-120.jpg",
+      "width": 900,
+      "height": 579,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-121.jpg",
+      "width": 900,
+      "height": 463,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-122.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-123.jpg",
+      "width": 600,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-124.jpg",
+      "width": 406,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-125.jpg",
+      "width": 406,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-126.jpg",
+      "width": 900,
+      "height": 410,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-127.jpg",
+      "width": 559,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-128.jpg",
+      "width": 900,
+      "height": 409,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-129.jpg",
+      "width": 624,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-130.jpg",
+      "width": 676,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-131.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-132.jpg",
+      "width": 664,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-133.jpg",
+      "width": 720,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-134.jpg",
+      "width": 714,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-135.jpg",
+      "width": 678,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-136.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-137.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-138.jpg",
+      "width": 678,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-139.jpg",
+      "width": 678,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-140.jpg",
+      "width": 678,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-141.jpg",
+      "width": 506,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-142.jpg",
+      "width": 678,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-143.jpg",
+      "width": 506,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-144.jpg",
+      "width": 506,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-145.jpg",
+      "width": 678,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-146.jpg",
+      "width": 678,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-147.jpg",
+      "width": 678,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-148.jpg",
+      "width": 678,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-149.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-150.png",
+      "width": 900,
+      "height": 754,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-151.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-152.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-153.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-154.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-155.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-156.jpg",
+      "width": 582,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-157.jpg",
+      "width": 544,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-158.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-159.png",
+      "width": 900,
+      "height": 507,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-160.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-161.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-162.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-163.jpg",
+      "width": 900,
+      "height": 675,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-164.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-165.jpg",
+      "width": 900,
+      "height": 675,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-166.jpg",
+      "width": 720,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-167.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    },
+    {
+      "src": "/assets/gallery/photo-168.jpg",
+      "width": 675,
+      "height": 900,
+      "alt": "KABITA MOBILE STORES shop photo"
+    }
+  ],
+  "privacySections": [
+    {
+      "title": "Information this site collects",
+      "paragraphs": [
+        "The public website does not ask visitors to create an account, place an order, or submit a contact form. It does not run analytics or advertising scripts.",
+        "Phone, Google Maps, Google review and WhatsApp links open those services. Each service handles information under its own privacy terms."
+      ]
+    },
+    {
+      "title": "Photos and locally stored assets",
+      "paragraphs": [
+        "The website loads its logo, fonts, and shop photos from files served with the site. The photo gallery includes images that were publicly displayed on the existing KABITA MOBILE STORES website."
+      ]
+    },
+    {
+      "title": "Admin access and saved website content",
+      "paragraphs": [
+        "Authorised shop staff can sign in to a separate admin area. The server uses a temporary session cookie for that login and stores the website content and uploaded images on the hosting server. Public visitors do not use that admin account.",
+        "The shop owner should confirm the hosting provider’s storage, backup and security settings before publishing this admin system online."
+      ]
+    },
+    {
+      "title": "Your choices",
+      "paragraphs": [
+        "You can leave the site without using the phone or map links. Questions about information shared through a call or a third-party service should be directed to that service or to the shop by phone.",
+        "The shop owner should review this draft policy and update it if the site adds forms, analytics, advertising, or other services."
+      ]
+    }
+  ],
+  "hero": {
+    "eyebrow": "BITHARI · WEST BENGAL",
+    "titleLead": "A good phone,",
+    "titleAccent": "right around",
+    "titleEnd": "the corner.",
+    "lede": "The right choice starts with a real conversation. Drop by KABITA MOBILE STORES for branded phones, exchange options and after-sales support.",
+    "eyebrowBn": "বিথারি · পশ্চিমবঙ্গ",
+    "titleLeadBn": "ভালো একটি ফোন,",
+    "titleAccentBn": "পাশেই আছে",
+    "titleEndBn": "আপনার জন্য।",
+    "ledeBn": "সঠিক ফোন বেছে নিতে সরাসরি কথা বলুন। ব্র্যান্ডেড ফোন, এক্সচেঞ্জ ও বিক্রয়-পরবর্তী পরিষেবা সম্পর্কে জানতে KABITA MOBILE STORES-এ আসুন।",
+    "supportingEn": "Branded mobile phones · Easy finance (EMI) · 100% original products.",
+    "supportingBn": "ব্র্যান্ডেড মোবাইল · সহজ ফাইন্যান্স (EMI) · ১০০% অরিজিনাল প্রোডাক্ট।",
+    "bengali": "ব্র্যান্ডেড মোবাইল · সহজ ফাইন্যান্স (EMI) · ১০০% অরিজিনাল প্রোডাক্ট।",
+    "image": ""
+  },
+  "theme": {
+    "orange": "#ed8646",
+    "orangeDeep": "#9b4b22"
+  }
+}
