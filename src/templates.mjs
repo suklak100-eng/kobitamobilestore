@@ -358,7 +358,42 @@ function sampleDetail(sample) {
 }
 
 function notFound() {
-  return `<main id="main-content" class="wrap page-main error-page">${tag("Page not found")}<h1>This page<br><em>isn’t here.</em></h1><p>Try a shop page, browse the catalogue or call directly.</p><div class="hero-actions"><a class="button button--blue" href="/">Go to home ${icon("arrow")}</a><a class="text-link" href="/catalog/">Browse phones</a></div></main>`;
+  return `<main id="main-content" class="wrap page-main error-page">
+    ${tag("404 · Page Not Found")}
+    <h1><span data-localized data-en="This page" data-bn="এই পাতাটি">This page</span><br><em><span data-localized data-en="isn’t here." data-bn="এখানে নেই।">isn’t here.</span></em></h1>
+    <p data-localized data-en="The page you are looking for may have been moved, removed or is temporarily unavailable. Browse our catalogue or return home." data-bn="যে পাতাটি খুঁজছেন সেটি সরানো হয়েছে অথবা পাওয়া যাচ্ছে না। আমাদের ফোনের তালিকা দেখুন বা হোম পেজে ফিরে যান।">The page you are looking for may have been moved, removed or is temporarily unavailable. Browse our catalogue or return home.</p>
+    <div class="hero-actions">
+      <a class="button button--blue" href="/"><span data-localized data-en="Go to home" data-bn="হোম পেজে যান">Go to home</span> ${icon("arrow")}</a>
+      <a class="button button--outline" href="/catalog/"><span data-localized data-en="Browse phones" data-bn="ফোন দেখুন">Browse phones</span></a>
+      ${callLink("Call the store")}
+    </div>
+  </main>`;
+}
+
+function successPage() {
+  return `<main id="main-content" class="wrap page-main success-page">
+    <span class="eyebrow eyebrow--success" data-localized data-en="Confirmed · Success" data-bn="সফল · সম্পন্ন হয়েছে">Confirmed · Success</span>
+    <h1><span data-localized data-en="Action" data-bn="কাজটি">Action</span><br><em><span data-localized data-en="successful." data-bn="সফলভাবে সম্পন্ন হয়েছে।">successful.</span></em></h1>
+    <p data-localized data-en="Your updates or request have been successfully recorded and published. You can now preview the live store or continue browsing." data-bn="আপনার পরিবর্তন বা অনুরোধ সফলভাবে রেকর্ড এবং প্রকাশিত হয়েছে। আপনি এখন লাইভ ওয়েবসাইট দেখতে পারেন বা অন্য পেজে যেতে পারেন।">Your updates or request have been successfully recorded and published. You can now preview the live store or continue browsing.</p>
+    <div class="hero-actions">
+      <a class="button button--orange" href="/"><span data-localized data-en="View live website" data-bn="লাইভ ওয়েবসাইট দেখুন">View live website</span> ${icon("arrow")}</a>
+      <a class="button button--blue" href="/catalog/"><span data-localized data-en="Browse phones" data-bn="ফোন দেখুন">Browse phones</span></a>
+      <a class="button button--outline" href="/admin/"><span data-localized data-en="Back to admin" data-bn="অ্যাডমিনে ফিরুন">Back to admin</span></a>
+    </div>
+  </main>`;
+}
+
+function thankYouPage() {
+  return `<main id="main-content" class="wrap page-main thankyou-page">
+    <span class="eyebrow" data-localized data-en="Thank You · Bithari" data-bn="ধন্যবাদ · বিথারি">Thank You · Bithari</span>
+    <h1><span data-localized data-en="Thank you for visiting" data-bn="আসার জন্য">Thank you for visiting</span><br><em><span data-localized data-en="KABITA MOBILE STORES." data-bn="KABITA MOBILE STORES-এ আপনাকে ধন্যবাদ।">KABITA MOBILE STORES.</span></em></h1>
+    <p data-localized data-en="We appreciate your time. For real-time stock, model pricing, EMI options, or exchange inquiries, reach out directly or visit our store in Bithari." data-bn="আমাদের দোকানে আপনার আগ্রহের জন্য অনেক ধন্যবাদ। ফোনের বর্তমান দাম, স্টক, EMI বা এক্সচেঞ্জ সংক্রান্ত যেকোনো তথ্যের জন্য সরাসরি দোকানে আসুন অথবা যোগাযোগ করুন।">We appreciate your time. For real-time stock, model pricing, EMI options, or exchange inquiries, reach out directly or visit our store in Bithari.</p>
+    <div class="hero-actions">
+      ${callLink("Call the store")}
+      <a class="button button--blue" href="/contact/"><span data-localized data-en="Shop location & directions" data-bn="দোকানের ঠিকানা ও দিকনির্দেশ">Shop location & directions</span> ${icon("arrow")}</a>
+      <a class="button button--outline" href="/catalog/"><span data-localized data-en="Browse phone catalogue" data-bn="ফোনের তালিকা দেখুন">Browse phone catalogue</span></a>
+    </div>
+  </main>`;
 }
 
 function makePages() {
@@ -385,6 +420,8 @@ function makePages() {
     active: "/catalog/",
     render: () => sampleDetail(sample),
   }))),
+  { path: "/success", title: "Success · KABITA MOBILE STORES", description: "Operation completed successfully at KABITA MOBILE STORES.", active: "", render: successPage },
+  { path: "/thank-you", title: "Thank You · KABITA MOBILE STORES", description: "Thank you for visiting KABITA MOBILE STORES in Bithari.", active: "", render: thankYouPage },
   { path: "/404", title: "Page not found · KABITA MOBILE STORES", description: "This page could not be found.", active: "", render: notFound },
   ];
 }
@@ -417,7 +454,7 @@ function businessSchema(siteOrigin) {
 
 function documentHtml(page, body, siteOrigin, assetVersion) {
   const canonical = siteOrigin ? `<link rel="canonical" href="${esc(siteOrigin + (page.path === "/" ? "/" : `${page.path}/`))}">` : "";
-  const noindex = page.path === "/privacy-policy" || (page.path.startsWith("/catalog") && catalogMode === "samples");
+  const noindex = page.path === "/privacy-policy" || page.path === "/success" || page.path === "/404" || (page.path.startsWith("/catalog") && catalogMode === "samples");
   const ld = JSON.stringify(businessSchema(siteOrigin)).replace(/</g, "\\u003c");
   return `<!doctype html>
 <html lang="en">

@@ -7,3 +7,13 @@
 @keyframes panel-in{from{opacity:.65;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:760px){.admin-topbar{align-items:flex-start;flex-wrap:wrap;padding-block:.85rem}.top-actions{width:100%;flex-wrap:wrap}.top-actions .button{flex:1}.admin-heading{align-items:flex-start;flex-direction:column;gap:1rem}.admin-tabs{margin-inline:-.2rem}.panel-heading{align-items:flex-start;flex-direction:column}.panel-heading>.button,.panel-heading>.file-button{align-self:stretch}.field-grid{grid-template-columns:1fr}.field-grid .field-wide{grid-column:auto}.managed-gallery{grid-template-columns:repeat(3,minmax(0,1fr))}.managed-row{grid-template-columns:1fr auto}.managed-row .row-actions{grid-column:1/-1;justify-content:flex-end}.review-edit{grid-template-columns:1fr}.review-edit label:last-of-type{grid-column:auto}.admin-footer{align-items:flex-start;flex-direction:column}.admin-footer .button{width:100%}.product-edit-images{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.admin-modal{padding:0;border:1px solid var(--line);border-radius:6px;background:var(--surface);box-shadow:0 24px 70px rgba(0,0,0,0.28);width:min(92vw,32rem)}
+.admin-modal::backdrop{background:rgba(15,23,29,0.65);backdrop-filter:blur(4px)}
+.admin-modal-box{padding:2.2rem;text-align:center;display:grid;gap:0.8rem;place-items:center}
+.admin-modal-icon{width:3.5rem;height:3.5rem;border-radius:50%;display:grid;place-items:center;font-size:1.8rem;font-weight:800;margin-bottom:0.5rem}
+.admin-modal-icon.is-success{background:#effaf4;color:#167a59;border:2px solid #b5d9c7}
+.admin-modal-icon.is-error{background:#fff2ef;color:#9d2e18;border:2px solid #e8bcb2}
+.admin-modal-actions{display:flex;flex-direction:column;gap:0.65rem;width:100%;margin-top:1rem}
+.button--save{background:#167a59;color:white;border-color:#167a59;box-shadow:0 4px 14px rgba(22,122,89,0.22)}
+.button--save:hover{background:#105c43;border-color:#105c43}
+.button.is-loading{opacity:0.75;pointer-events:none;cursor:wait}

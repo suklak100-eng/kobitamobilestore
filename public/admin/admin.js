@@ -139,16 +139,61 @@ async function uploadFile(file) {
   return result.src;
 }
 
+let currentAdminLang = "bn";
+try {
+  currentAdminLang = localStorage.getItem("kabita-admin-language") || localStorage.getItem("kabita-language") || "bn";
+} catch {}
+
+function setAdminLanguage(lang) {
+  currentAdminLang = lang === "en" ? "en" : "bn";
+  document.documentElement.lang = currentAdminLang;
+  try { localStorage.setItem("kabita-admin-language", currentAdminLang); } catch {}
+  document.querySelectorAll("[data-localized]").forEach((element) => {
+    const text = element.dataset[currentAdminLang];
+    if (text !== undefined) element.textContent = text;
+  });
+  const label = currentAdminLang === "bn" ? "English" : "বাংলা";
+  const btn = $("#admin-lang-toggle");
+  if (btn) btn.innerHTML = `<span>${label}</span>`;
+  const loginBtn = $("#admin-login-lang");
+  if (loginBtn) loginBtn.innerHTML = `<span>${label}</span>`;
+}
+
 async function saveWebsite() {
   syncBoundFields();
-  setStatus("সংরক্ষণ হচ্ছে…");
+  const savingText = currentAdminLang === "bn" ? "সংরক্ষণ ও প্রকাশ হচ্ছে…" : "Saving & publishing…";
+  setStatus(savingText);
+  const saveButtons = [$("#save-all"), $("#save-bottom")].filter(Boolean);
+  saveButtons.forEach((btn) => {
+    btn.classList.add("is-loading");
+    btn.disabled = true;
+  });
   try {
     const result = await api("/api/admin/save", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(content) });
-    setStatus("Saved", "saved");
-    toast(result.message || "পরিবর্তন সংরক্ষিত হয়েছে।");
+    const savedText = currentAdminLang === "bn" ? "লাইভ প্রকাশিত" : "Published Live";
+    setStatus(savedText, "saved");
+    toast(result.message || (currentAdminLang === "bn" ? "পরিবর্তন সংরক্ষিত ও প্রকাশিত হয়েছে।" : "Changes saved and published."));
+    const modal = $("#save-success-modal");
+    if (modal) {
+      if (typeof modal.showModal === "function") modal.showModal();
+      else modal.hidden = false;
+    }
   } catch (error) {
-    setStatus("সংরক্ষণ হয়নি", "error");
+    const errorText = currentAdminLang === "bn" ? "সংরক্ষণ হয়নি" : "Save failed";
+    setStatus(errorText, "error");
     toast(error.message, true);
+    const errModal = $("#save-error-modal");
+    if (errModal) {
+      const desc = $("#error-modal-desc");
+      if (desc) desc.textContent = error.message;
+      if (typeof errModal.showModal === "function") errModal.showModal();
+      else errModal.hidden = false;
+    }
+  } finally {
+    saveButtons.forEach((btn) => {
+      btn.classList.remove("is-loading");
+      btn.disabled = false;
+    });
   }
 }
 
@@ -156,10 +201,12 @@ function showDashboard() {
   $("#login-screen").hidden = true;
   $("#dashboard").hidden = false;
   fillBoundFields();
-  setStatus("সব পরিবর্তন লোড হয়েছে", "saved");
+  setAdminLanguage(currentAdminLang);
+  setStatus(currentAdminLang === "bn" ? "সব পরিবর্তন লোড হয়েছে" : "Changes loaded", "saved");
 }
 
 async function bootDashboard() {
+  setAdminLanguage(currentAdminLang);
   const session = await api("/api/admin/session");
   if (!session.loggedIn) { $("#login-screen").hidden = false; return; }
   content = await api("/api/admin/data");
@@ -380,6 +427,30 @@ $("#credentials-form")?.addEventListener("submit", async (event) => {
     errorBox.textContent = error.message;
     errorBox.hidden = false;
   }
+});
+
+$("#close-success-modal")?.addEventListener("click", () => {
+  const modal = $("#save-success-modal");
+  if (modal?.close) modal.close(); else if (modal) modal.hidden = true;
+});
+
+$("#close-error-modal")?.addEventListener("click", () => {
+  const modal = $("#save-error-modal");
+  if (modal?.close) modal.close(); else if (modal) modal.hidden = true;
+});
+
+$("#retry-save-btn")?.addEventListener("click", () => {
+  const modal = $("#save-error-modal");
+  if (modal?.close) modal.close(); else if (modal) modal.hidden = true;
+  saveWebsite();
+});
+
+$("#admin-lang-toggle")?.addEventListener("click", () => {
+  setAdminLanguage(currentAdminLang === "bn" ? "en" : "bn");
+});
+
+$("#admin-login-lang")?.addEventListener("click", () => {
+  setAdminLanguage(currentAdminLang === "bn" ? "en" : "bn");
 });
 
 bootDashboard().catch((error) => {

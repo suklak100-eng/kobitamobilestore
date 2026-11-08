@@ -2,7 +2,7 @@ import { readFile, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { getPagePaths } from "../src/templates.mjs";
-import { applyEditableContent } from "../src/data/site.mjs";
+import { applyEditableContent, business } from "../src/data/site.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const distRoot = path.join(projectRoot, "dist");
@@ -96,10 +96,12 @@ assert(adminHtml.includes('data-bind="hero.titleLeadBn"') && adminHtml.includes(
 assert(adminHtml.includes('data-bind="hero.supportingEn"') && adminHtml.includes('data-bind="hero.supportingBn"'), "admin can edit bilingual hero supporting copy");
 assert(!adminHtml.includes("KabitaDemo2026!"), "demo password is not exposed in the public admin HTML");
 assert(adminHtml.includes('id="credentials-form"'), "admin security credentials form is present");
+assert(adminHtml.includes('id="save-success-modal"'), "admin save success modal is present");
+assert(adminHtml.includes('id="admin-lang-toggle"'), "admin bilingual language toggle is present");
 assert((await readFile(path.join(distRoot, "robots.txt"), "utf8")).includes("Disallow: /admin/"), "robots file disallows admin and API paths");
 
 const contactHtml = await readFile(path.join(distRoot, "contact/index.html"), "utf8");
-assert(contactHtml.includes("tel:9932557023"), "contact page uses the verified phone number");
+assert(contactHtml.includes(`tel:${business.phone}`), "contact page uses the verified phone number");
 assert(contactHtml.includes("destination_place_id=ChIJD-K6Zp1P_zkRUo_E7Ep3JwY"), "directions link uses the verified Maps place ID");
 
 for (const photo of photos) {
