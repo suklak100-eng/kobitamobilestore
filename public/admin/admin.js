@@ -163,6 +163,10 @@ async function bootDashboard() {
   const session = await api("/api/admin/session");
   if (!session.loggedIn) { $("#login-screen").hidden = false; return; }
   content = await api("/api/admin/data");
+  if (session.username && $("#new-username-input")) {
+    $("#new-username-input").placeholder = session.username;
+    $("#new-username-input").value = session.username;
+  }
   showDashboard();
 }
 
@@ -300,6 +304,82 @@ $("#import-backup").addEventListener("change", async (event) => {
     content = backup; fillBoundFields(); markDirty(); toast("Backup লোড হয়েছে। যাচাই করে save করুন।");
   } catch (error) { toast(error.message, true); }
   event.target.value = "";
+});
+
+function generateStrongPassword() {
+  const upper = "ABCDEFGHJKLMNPQRSTUVWXYZ";
+  const lower = "abcdefghjkmnpqrstuvwxyz";
+  const digits = "23456789";
+  const symbols = "!@#$%^&*-_";
+  const all = upper + lower + digits + symbols;
+  const pwd = [
+    upper[Math.floor(Math.random() * upper.length)],
+    lower[Math.floor(Math.random() * lower.length)],
+    digits[Math.floor(Math.random() * digits.length)],
+    symbols[Math.floor(Math.random() * symbols.length)],
+  ];
+  for (let i = pwd.length; i < 18; i++) {
+    pwd.push(all[Math.floor(Math.random() * all.length)]);
+  }
+  for (let i = pwd.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pwd[i], pwd[j]] = [pwd[j], pwd[i]];
+  }
+  return pwd.join("");
+}
+
+$("#generate-password-btn")?.addEventListener("click", () => {
+  const pwd = generateStrongPassword();
+  const input = $("#new-password-input");
+  input.type = "text";
+  input.value = pwd;
+  navigator.clipboard?.writeText(pwd).catch(() => {});
+  const toggleBtn = $("#toggle-password-visibility");
+  if (toggleBtn) toggleBtn.textContent = "পাসওয়ার্ড লুকান 🙈";
+  toast("শক্তিশালী পাসওয়ার্ড তৈরি ও কপি করা হয়েছে!");
+});
+
+$("#toggle-password-visibility")?.addEventListener("click", () => {
+  const input = $("#new-password-input");
+  if (input.type === "password") {
+    input.type = "text";
+    $("#toggle-password-visibility").textContent = "পাসওয়ার্ড লুকান 🙈";
+  } else {
+    input.type = "password";
+    $("#toggle-password-visibility").textContent = "পাসওয়ার্ড দেখুন 👁";
+  }
+});
+
+$("#credentials-form")?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const errorBox = $("#credentials-error");
+  const successBox = $("#credentials-success");
+  errorBox.hidden = true;
+  successBox.hidden = true;
+  const form = new FormData(event.currentTarget);
+  const currentPassword = form.get("currentPassword");
+  const newUsername = form.get("newUsername");
+  const newPassword = form.get("newPassword");
+
+  try {
+    const result = await api("/api/admin/change-credentials", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ currentPassword, newUsername, newPassword }),
+    });
+    successBox.textContent = result.message || "ইউজারনেম ও পাসওয়ার্ড সফলভাবে সংরক্ষিত হয়েছে।";
+    successBox.hidden = false;
+    $("#current-password-input").value = "";
+    $("#new-password-input").value = "";
+    if (result.username && $("#new-username-input")) {
+      $("#new-username-input").value = result.username;
+      $("#new-username-input").placeholder = result.username;
+    }
+    toast(result.message || "পাসওয়ার্ড সফলভাবে পরিবর্তন হয়েছে।");
+  } catch (error) {
+    errorBox.textContent = error.message;
+    errorBox.hidden = false;
+  }
 });
 
 bootDashboard().catch((error) => {

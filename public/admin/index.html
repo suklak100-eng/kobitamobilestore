@@ -114,6 +114,23 @@
     <section class="admin-panel" data-panel="backup" role="tabpanel" hidden>
       <div class="panel-heading"><div><p class="eyebrow">06 · BACKUP & ACCESS</p><h2>Backup ও নিরাপত্তা</h2></div></div>
       <div class="section-card backup-card"><h3>আপনার ওয়েবসাইটের backup</h3><p>সাইটের edit করা লেখা, catalogue, hours ও gallery তালিকা JSON file হিসেবে download করুন।</p><button class="button button--primary" id="export-backup" type="button">Backup download</button><label class="button button--quiet file-button">Backup restore<input type="file" id="import-backup" accept="application/json"></label></div>
+      <div class="section-card" id="credentials-card">
+        <div class="section-card-head"><div><h3>নিরাপত্তা ও পাসওয়ার্ড পরিবর্তন</h3><p>বর্তমান পাসওয়ার্ড নিশ্চিত করে নতুন ইউজারনেম ও পাসওয়ার্ড সেট করুন।</p></div></div>
+        <form id="credentials-form" autocomplete="off">
+          <div class="field-grid">
+            <label class="field-wide">বর্তমান পাসওয়ার্ড (Current Password)<input name="currentPassword" id="current-password-input" type="password" autocomplete="current-password" required placeholder="বর্তমান পাসওয়ার্ড দিন"></label>
+            <label>নতুন ইউজারনেম (New Username)<input name="newUsername" id="new-username-input" autocomplete="username" placeholder="নতুন ইউজারনেম"></label>
+            <label>নতুন পাসওয়ার্ড (New Password)<input name="newPassword" id="new-password-input" type="password" autocomplete="new-password" required placeholder="কমপক্ষে ১৬ ক্যারেক্টার"></label>
+          </div>
+          <div class="editor-actions" style="margin-top:1rem; align-items:center;">
+            <button class="button button--primary" type="submit">পাসওয়ার্ড পরিবর্তন করুন</button>
+            <button class="button button--quiet" id="generate-password-btn" type="button">🎲 শক্তিশালী পাসওয়ার্ড তৈরি করুন</button>
+            <button class="small-button" id="toggle-password-visibility" type="button">পাসওয়ার্ড দেখুন 👁</button>
+          </div>
+          <p class="form-error" id="credentials-error" role="alert" hidden style="margin-top:0.9rem;"></p>
+          <div class="save-status is-saved" id="credentials-success" role="status" hidden style="margin-top:0.9rem;"></div>
+        </form>
+      </div>
       <div class="section-card"><h3>Admin login</h3><p>Public hosting-এ দেওয়ার আগে server-এর ADMIN_USERNAME, ADMIN_PASSWORD ও SESSION_SECRET অবশ্যই বদলাতে হবে। Public server local demo password দিয়ে চালু হতে দেবে না।</p></div>
       <div class="section-card"><h3>Public URL</h3><p>এই local admin URL: <code>/admin/</code>. Login না থাকলে editor data দেখা যায় না।</p></div>
     </section>

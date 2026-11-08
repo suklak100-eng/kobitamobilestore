@@ -25,6 +25,38 @@ async function loadLocalEnv() {
   } catch {}
 }
 
+async function updateEnvFile(updates) {
+  const envPath = path.join(projectRoot, ".env");
+  let content = "";
+  try {
+    content = await readFile(envPath, "utf8");
+  } catch (err) {
+    if (err.code !== "ENOENT") throw err;
+  }
+  let lines = content ? content.split(/\r?\n/) : [];
+  const updatedKeys = new Set();
+  lines = lines.map((line) => {
+    const match = line.match(/^\s*([A-Z][A-Z0-9_]*)\s*=/);
+    if (match && updates[match[1]] !== undefined) {
+      updatedKeys.add(match[1]);
+      return `${match[1]}=${updates[match[1]]}`;
+    }
+    return line;
+  });
+  for (const [key, value] of Object.entries(updates)) {
+    if (!updatedKeys.has(key)) {
+      lines.push(`${key}=${value}`);
+    }
+  }
+  if (!lines.some((l) => l.startsWith("SESSION_SECRET="))) {
+    lines.push(`SESSION_SECRET=${process.env.SESSION_SECRET || randomBytes(32).toString("hex")}`);
+  }
+  const newContent = lines.filter((line, i, arr) => i < arr.length - 1 || line.trim() !== "").join("\n") + "\n";
+  const tempPath = path.join(projectRoot, `.env.${Date.now()}.tmp`);
+  await writeFile(tempPath, newContent, "utf8");
+  await rename(tempPath, envPath);
+}
+
 await loadLocalEnv();
 
 const host = process.env.HOST || "127.0.0.1";
@@ -33,9 +65,9 @@ const loopbackHost = ["127.0.0.1", "localhost", "::1"].includes(host);
 const production = process.env.NODE_ENV === "production";
 const demoUsername = "admin";
 const demoPassword = "KabitaDemo2026!";
-const adminUsername = process.env.ADMIN_USERNAME || (loopbackHost && !production ? demoUsername : "");
-const adminPassword = process.env.ADMIN_PASSWORD || (loopbackHost && !production ? demoPassword : "");
-const sessionSecret = process.env.SESSION_SECRET || (loopbackHost && !production ? createHash("sha256").update(`${projectRoot}:local-demo-session`).digest("hex") : "");
+let adminUsername = process.env.ADMIN_USERNAME || (loopbackHost && !production ? demoUsername : "");
+let adminPassword = process.env.ADMIN_PASSWORD || (loopbackHost && !production ? demoPassword : "");
+let sessionSecret = process.env.SESSION_SECRET || (loopbackHost && !production ? createHash("sha256").update(`${projectRoot}:local-demo-session`).digest("hex") : "");
 if (!adminUsername || !adminPassword || !sessionSecret || (production && (adminPassword.length < 16 || sessionSecret.length < 32))) {
   throw new Error("Admin security is not configured. Set ADMIN_USERNAME, ADMIN_PASSWORD (16+ chars), and SESSION_SECRET (32+ chars) in the server environment before starting.");
 }
@@ -269,6 +301,52 @@ async function handleApi(request, response, pathname) {
     }
     if (!requireAdmin(request, response)) return true;
     if (pathname === "/api/admin/data" && request.method === "GET") { sendJson(response, 200, siteContent); return true; }
+    if (pathname === "/api/admin/change-credentials" && request.method === "POST") {
+      if (!checkOrigin(request, response)) return true;
+      const body = await readJson(request);
+      if (!body || typeof body !== "object" || Array.isArray(body)) {
+        sendJson(response, 400, { error: "অনুরোধের তথ্য সঠিক নয়।" });
+        return true;
+      }
+      const currentPassword = String(body.currentPassword || "");
+      const newPassword = String(body.newPassword || "");
+      const newUsername = String(body.newUsername || "").trim();
+
+      if (!currentPassword || !safeEqual(currentPassword, adminPassword)) {
+        sendJson(response, 401, { error: "বর্তমান পাসওয়ার্ড মিলছে না। সঠিক পাসওয়ার্ড দিন।" });
+        return true;
+      }
+      if (!newPassword || newPassword.length < 8) {
+        sendJson(response, 400, { error: "নতুন পাসওয়ার্ড কমপক্ষে ৮টি ক্যারেক্টার হতে হবে।" });
+        return true;
+      }
+      if (production && newPassword.length < 16) {
+        sendJson(response, 400, { error: "Production সার্ভারে পাসওয়ার্ড কমপক্ষে ১৬টি ক্যারেক্টার হতে হবে।" });
+        return true;
+      }
+      const targetUser = newUsername || adminUsername;
+      if (targetUser.length < 3 || !/^[a-zA-Z0-9_.-]+$/.test(targetUser)) {
+        sendJson(response, 400, { error: "ইউজারনেম কমপক্ষে ৩টি ক্যারেক্টার হতে হবে এবং শুধুমাত্র a-z, 0-9, _, -, . ব্যবহার করা যাবে।" });
+        return true;
+      }
+
+      adminUsername = targetUser;
+      adminPassword = newPassword;
+      process.env.ADMIN_USERNAME = targetUser;
+      process.env.ADMIN_PASSWORD = newPassword;
+
+      await updateEnvFile({
+        ADMIN_USERNAME: targetUser,
+        ADMIN_PASSWORD: newPassword,
+      });
+
+      sendJson(response, 200, {
+        success: true,
+        message: "ইউজারনেম ও পাসওয়ার্ড সফলভাবে সংরক্ষিত হয়েছে।",
+        username: targetUser,
+      });
+      return true;
+    }
     if (pathname === "/api/admin/save" && request.method === "POST") {
       if (!checkOrigin(request, response)) return true;
       const next = normalizeContent(await readJson(request));
