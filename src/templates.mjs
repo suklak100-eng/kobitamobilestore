@@ -26,6 +26,7 @@ const icon = (name) => {
     chat: '<path d="M20 11.5a7.5 7.5 0 0 1-11.1 6.6L4 19l1.1-4.4A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8.8 9.1c.4 1.7 1.8 3 3.5 3.5"/>',
     clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
     star: '<path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/>',
+    lock: '<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
   };
   return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name] ?? paths.arrow}</svg>`;
 };
@@ -116,6 +117,7 @@ function footer() {
       </div>
       <div class="footer-bottom wrap">
         <span>© ${new Date().getFullYear()} ${esc(business.name)}</span>
+        <a class="footer-admin-button" href="/admin/" aria-label="Admin panel login">${icon("lock")}<span data-localized data-en="Admin Portal" data-bn="অ্যাডমিন প্যানেল">Admin Portal</span></a>
         <span>Made for the next visit.</span>
       </div>
     </footer>`;

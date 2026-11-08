@@ -76,6 +76,7 @@ assert(homeHtml.includes('aria-label="WhatsApp" role="img"'), "WhatsApp action u
 assert(homeHtml.includes('class="offer-card offer-card--orange" href="/about/#finance-partners"'), "EMI service card opens listed finance partner details");
 assert(homeHtml.includes('class="offer-card offer-card--blue" href="/about/#services"'), "exchange and after-sales card opens listed services");
 assert(homeHtml.includes("data-en=\"A good phone,\" data-bn=\"ভালো একটি ফোন,\""), "home hero contains editable English and Bengali copy");
+assert(homeHtml.includes('class="footer-admin-button" href="/admin/"'), "footer provides direct access button to the admin panel");
 assert(homeHtml.includes("/theme-init.js"), "theme preference is applied before the first paint");
 assert((await readFile(path.join(distRoot, "theme.css"), "utf8")).includes("--orange:#ed8646"), "home uses the richer orange theme token");
 assert((await readFile(path.join(distRoot, "styles.css"), "utf8")).includes(':root[data-theme="dark"]'), "site provides dark theme color tokens");
