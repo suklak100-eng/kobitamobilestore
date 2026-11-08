@@ -714,7 +714,11 @@ $("#dashboard").addEventListener("click", async (event) => {
   if (!button) return;
   const { action, id, index } = button.dataset;
   if (action === "edit-product") showProductEditor(content.products.find((item) => item.id === id));
-  if (action === "delete-product" && confirm("এই ফোনটি catalogue থেকে সরাবেন?")) { content.products = content.products.filter((item) => item.id !== id); renderProducts(); markDirty(); }
+  if (action === "delete-product" && confirm("এই ফোনটি catalogue থেকে সরাবেন?")) {
+    content.products = content.products.filter((item) => item.id !== id);
+    renderProducts();
+    await saveWebsite();
+  }
   if (action === "close-product") { $("#product-form").hidden = true; editingProduct = null; }
   if (action === "clear-product-image" && editingProduct) {
     const idx = Number(index);
@@ -734,7 +738,7 @@ $("#dashboard").addEventListener("click", async (event) => {
 });
 
 $("#add-product").addEventListener("click", () => showProductEditor());
-$("#product-form").addEventListener("submit", (event) => {
+$("#product-form").addEventListener("submit", async (event) => {
   event.preventDefault();
   if (!editingProduct) return;
   const form = new FormData(event.currentTarget);
@@ -788,8 +792,7 @@ $("#product-form").addEventListener("submit", (event) => {
   editingProduct = null;
   $("#product-form").hidden = true;
   renderProducts();
-  markDirty();
-  toast(currentAdminLang === "bn" ? "ফোনটি catalogue-এ যোগ/আপডেট হয়েছে। স্থায়ী করতে উপরের “সংরক্ষণ ও প্রকাশ” বাটনে চাপুন।" : "Phone updated. Click 'Save & Publish' at the top to make it live.");
+  await saveWebsite();
 });
 
 $("#product-form").addEventListener("input", (event) => {

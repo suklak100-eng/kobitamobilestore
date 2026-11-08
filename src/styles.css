@@ -348,7 +348,7 @@ button, input { font: inherit; }
 .catalog-card[hidden] { display: none; }
 .catalog-card-link { display: block; height: 100%; color: var(--ink); text-decoration: none; }
 .catalog-device-area { position: relative; display: grid; min-height: 14rem; place-items: center; overflow: hidden; background: var(--paper); }
-.product-card-image { width: 100%; height: 14rem; object-fit: cover; transition: transform 350ms ease; }
+.product-card-image { width: 100%; height: 14rem; object-fit: contain; padding: .65rem; transition: transform 350ms ease; }
 .catalog-card:hover .product-card-image { transform: scale(1.035); }
 .catalog-count { position: absolute; top: .8rem; right: .9rem; color: color-mix(in srgb, var(--ink) 54%, transparent); font-family: var(--display); font-size: .95rem; font-weight: 600; }
 .sample-pill { position: absolute; bottom: .75rem; left: .8rem; padding: .25rem .5rem; background: var(--ink); color: var(--paper); font-size: .64rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
@@ -424,15 +424,15 @@ button, input { font: inherit; }
 .admin-empty-catalog { margin: 2rem 0; padding: 2rem; background: var(--surface); text-align: center; }
 .admin-empty-catalog a { color: var(--blue-deep); font-weight: 700; }
 
-.whatsapp-float { position: fixed; z-index: 45; right: max(1rem, env(safe-area-inset-right)); bottom: max(1rem, env(safe-area-inset-bottom)); isolation: isolate; display: inline-flex; min-height: 3.65rem; align-items: center; gap: .7rem; padding: .48rem 1.05rem .48rem .55rem; border: 1px solid color-mix(in srgb, white 34%, transparent); border-radius: 999px; background: #168b60; color: white; box-shadow: 0 12px 32px color-mix(in srgb, var(--ink) 28%, transparent); text-decoration: none; transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease; }
+.whatsapp-float { position: fixed; z-index: 45; right: max(1.15rem, env(safe-area-inset-right)); bottom: max(1.15rem, env(safe-area-inset-bottom)); isolation: isolate; display: inline-flex; min-height: 3.75rem; align-items: center; gap: .75rem; padding: .45rem 1.25rem .45rem .45rem; border: 1px solid rgba(255, 255, 255, 0.28); border-radius: 999px; background: linear-gradient(135deg, #128C7E 0%, #075E54 100%); color: #ffffff; box-shadow: 0 8px 24px -4px rgba(7, 94, 84, 0.45), 0 14px 36px 0 rgba(0, 0, 0, 0.25); text-decoration: none; backdrop-filter: blur(8px); transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 200ms cubic-bezier(0.16, 1, 0.3, 1), background 200ms ease; }
 .whatsapp-float::before { position: absolute; z-index: 0; inset: -.35rem; border: 2px solid rgb(37 211 102 / 62%); border-radius: inherit; content: ""; pointer-events: none; animation: whatsapp-ring 2.7s ease-out infinite; }
-.whatsapp-float:hover { transform: translateY(-3px); background: #0d704b; box-shadow: 0 16px 38px color-mix(in srgb, var(--ink) 34%, transparent); }
-.whatsapp-icon { position: relative; z-index: 1; display: grid; width: 2.35rem; height: 2.35rem; flex: none; place-items: center; border-radius: 50%; background: #fff; }
-.whatsapp-icon svg { width: 1.55rem; height: 1.55rem; fill: #168b60; }
-.whatsapp-copy { display: grid; gap: .02rem; line-height: 1.2; }
-.whatsapp-copy { position: relative; z-index: 1; }
-.whatsapp-copy strong { font-size: .86rem; }
-.whatsapp-copy small { color: color-mix(in srgb, white 82%, transparent); font-size: .68rem; font-weight: 550; }
+.whatsapp-float:hover { transform: translateY(-3px) scale(1.02); background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); box-shadow: 0 12px 32px -4px rgba(37, 211, 102, 0.5), 0 20px 42px 0 rgba(0, 0, 0, 0.32); }
+.whatsapp-icon { position: relative; z-index: 1; display: grid; width: 2.75rem; height: 2.75rem; flex: none; place-items: center; border-radius: 50%; background: #ffffff; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.22); overflow: visible; }
+.whatsapp-icon svg { width: 2rem; height: 2rem; display: block; }
+.whatsapp-status-dot { position: absolute; bottom: 1px; right: 1px; width: .68rem; height: .68rem; background: #25D366; border: 2px solid #ffffff; border-radius: 50%; box-shadow: 0 0 6px rgba(37, 211, 102, 0.95); }
+.whatsapp-copy { display: grid; gap: .06rem; line-height: 1.22; position: relative; z-index: 1; }
+.whatsapp-copy strong { font-size: .88rem; font-weight: 700; letter-spacing: .01em; color: #ffffff; }
+.whatsapp-copy small { color: #d1fae5; font-size: .72rem; font-weight: 600; }
 
 :root[data-theme="dark"] {
   color-scheme: dark;

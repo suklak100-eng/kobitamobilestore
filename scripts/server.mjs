@@ -389,7 +389,7 @@ async function handleApi(request, response, rawPathname) {
       if (!checkOrigin(request, response)) return true;
       const next = normalizeContent(await readJson(request));
       for (const image of [next.business.logo, next.hero.image, ...next.gallery.map((p) => p.src), ...next.products.flatMap((p) => p.images)]) {
-        if (!image) continue;
+        if (!image || /^https?:\/\//i.test(image) || image.startsWith("data:")) continue;
         const publicPath = path.resolve(publicRoot, `.${image}`);
         if (!publicPath.startsWith(`${publicRoot}${path.sep}`)) throw Object.assign(new Error("ছবির file path ঠিক নেই।"), { statusCode: 400 });
         try { await stat(publicPath); } catch { throw Object.assign(new Error("একটি ছবি খুঁজে পাওয়া যায়নি। আবার upload করুন।"), { statusCode: 400 }); }

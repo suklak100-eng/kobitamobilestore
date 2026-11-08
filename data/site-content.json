@@ -108,8 +108,217 @@
       ]
     }
   ],
-  "products": [],
-  "catalogMode": "samples",
+  "products": [
+    {
+      "id": "prod-vivo-v40-5g",
+      "brand": "Vivo",
+      "model": "V40 5G",
+      "name": "Vivo V40 5G",
+      "slug": "vivo-v40-5g",
+      "price": "34999",
+      "published": true,
+      "description": "Vivo V40 5G features co-engineered ZEISS optics with a 50MP OIS main camera and 50MP ultra-wide sensor. Powered by Snapdragon 7 Gen 3 with a 5500mAh BlueVolt battery and 80W FlashCharge in an ultra-slim 7.58mm 3D curved design with IP68 water resistance.",
+      "specs": [
+        { "label": "Display", "value": "6.78-inch 1.5K 120Hz 3D Curved AMOLED, 4500 nits peak brightness" },
+        { "label": "Processor", "value": "Qualcomm Snapdragon 7 Gen 3 (4nm)" },
+        { "label": "Rear Camera", "value": "50MP ZEISS OIS (f/1.88) + 50MP ZEISS Ultra Wide-Angle (f/2.0)" },
+        { "label": "Front Camera", "value": "50MP ZEISS Group Selfie Camera (f/2.0)" },
+        { "label": "Battery & Charging", "value": "5500 mAh BlueVolt Battery with 80W FlashCharge" },
+        { "label": "Operating System", "value": "Funtouch OS 14 based on Android 14" },
+        { "label": "Durability", "value": "IP68 Dust and Water Resistance" },
+        { "label": "Network & SIM", "value": "5G Dual SIM, Wi-Fi 6, Bluetooth 5.4" }
+      ],
+      "images": [
+        "https://rukminim2.flixcart.com/image/832/832/xif0q/mobile/f/m/m/-original-imah3hvk9kgfsads.jpeg",
+        "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/product/1740399203299/zip/img/vivo-v40-phone2-line1.png",
+        "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/product/1740399203299/zip/img/vivo-v40-with-zeiss-pro-portrait-in.jpg",
+        "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/product/1740399203299/zip/img/vivo-v40-with-zeiss-all-main-camera.jpg",
+        "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/product/1740399203299/zip/img/vivo-v40-with-india-colors-design.jpg"
+      ],
+      "variants": [
+        { "ram": "8 GB", "storage": "128 GB", "price": "34999", "label": "8 GB RAM · 128 GB Storage" },
+        { "ram": "8 GB", "storage": "256 GB", "price": "36999", "label": "8 GB RAM · 256 GB Storage" },
+        { "ram": "12 GB", "storage": "512 GB", "price": "41999", "label": "12 GB RAM · 512 GB Storage" }
+      ]
+    },
+    {
+      "id": "prod-vivo-v40-pro-5g",
+      "brand": "Vivo",
+      "model": "V40 Pro 5G",
+      "name": "Vivo V40 Pro 5G",
+      "slug": "vivo-v40-pro-5g",
+      "price": "49999",
+      "published": true,
+      "description": "Vivo V40 Pro 5G delivers flagship photography with triple 50MP ZEISS cameras including a dedicated 50MP telephoto portrait sensor. Equipped with MediaTek Dimensity 9200+, a 5500mAh battery, 80W FlashCharge, and IP68 protection.",
+      "specs": [
+        { "label": "Display", "value": "6.78-inch 1.5K 120Hz Curved AMOLED, 4500 nits peak" },
+        { "label": "Processor", "value": "MediaTek Dimensity 9200+ Flagship 4nm Processor" },
+        { "label": "Rear Camera", "value": "50MP Sony IMX921 OIS + 50MP Telephoto OIS + 50MP Ultra-Wide" },
+        { "label": "Front Camera", "value": "50MP ZEISS Autofocus Selfie Camera" },
+        { "label": "Battery & Charging", "value": "5500 mAh Battery, 80W FlashCharge" },
+        { "label": "Operating System", "value": "Funtouch OS 14 (Android 14)" },
+        { "label": "Build", "value": "IP68 Water & Dust Resistant, 3D Curved Glass" }
+      ],
+      "images": [
+        "https://rukminim2.flixcart.com/image/832/832/xif0q/mobile/4/4/6/-original-imah3hvkn8vggtmg.jpeg",
+        "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/product/1740399203299/zip/img/vivo-v40-phone2-line2.png",
+        "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/product/1740399203299/zip/img/vivo-v40-with-professional-portrait-cameras-in.jpg",
+        "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/product/1740399203299/zip/img/vivo-v40-with-dust-and-water-resistance-highline.jpg",
+        "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/product/1740399203299/zip/img/vivo-v40-with-snapdragon-7-gen-3-chip.jpg"
+      ],
+      "variants": [
+        { "ram": "8 GB", "storage": "256 GB", "price": "49999", "label": "8 GB RAM · 256 GB Storage" },
+        { "ram": "12 GB", "storage": "512 GB", "price": "55999", "label": "12 GB RAM · 512 GB Storage" }
+      ]
+    },
+    {
+      "id": "prod-samsung-galaxy-s24-5g",
+      "brand": "Samsung",
+      "model": "Galaxy S24 5G",
+      "name": "Samsung Galaxy S24 5G",
+      "slug": "samsung-galaxy-s24-5g",
+      "price": "64999",
+      "published": true,
+      "description": "Samsung Galaxy S24 5G introduces revolutionary Galaxy AI features including Circle to Search, Live Translate, and Generative Edit. Built with an Armor Aluminum frame, Dynamic AMOLED 2X 120Hz display, and 50MP triple camera system.",
+      "specs": [
+        { "label": "Display", "value": "6.2-inch FHD+ Dynamic AMOLED 2X, 1-120Hz Adaptive, 2600 nits" },
+        { "label": "Processor", "value": "Samsung Exynos 2400 Deca-Core / Snapdragon 8 Gen 3" },
+        { "label": "Rear Camera", "value": "50MP OIS Wide + 12MP Ultra-Wide + 10MP 3X Telephoto OIS" },
+        { "label": "Front Camera", "value": "12MP Dual Pixel AF Selfie Camera" },
+        { "label": "Battery & Charging", "value": "4000 mAh Battery with Fast Wireless & 25W Wired Charging" },
+        { "label": "Durability", "value": "IP68 Water & Dust Resistant, Armor Aluminum 2.0" }
+      ],
+      "images": [
+        "https://upload.wikimedia.org/wikipedia/commons/e/e5/S24_Onyx_Black.png",
+        "https://upload.wikimedia.org/wikipedia/commons/3/30/Samsung_Galaxy_S24_%28webtekno%29_001.png",
+        "https://upload.wikimedia.org/wikipedia/commons/8/80/Samsung_Galaxy_S24_%28webtekno%29_002.png",
+        "https://upload.wikimedia.org/wikipedia/commons/c/cc/Samsung_Galaxy_S24_%28webtekno%29_003.png",
+        "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&auto=format&fit=crop&q=80"
+      ],
+      "variants": [
+        { "ram": "8 GB", "storage": "128 GB", "price": "64999", "label": "8 GB RAM · 128 GB Storage" },
+        { "ram": "8 GB", "storage": "256 GB", "price": "69999", "label": "8 GB RAM · 256 GB Storage" },
+        { "ram": "8 GB", "storage": "512 GB", "price": "79999", "label": "8 GB RAM · 512 GB Storage" }
+      ]
+    },
+    {
+      "id": "prod-oneplus-12r-5g",
+      "brand": "OnePlus",
+      "model": "12R 5G",
+      "name": "OnePlus 12R 5G",
+      "slug": "oneplus-12r-5g",
+      "price": "39999",
+      "published": true,
+      "description": "OnePlus 12R 5G delivers flagship gaming performance with Qualcomm Snapdragon 8 Gen 2, 4th Gen LTPO 120Hz ProXDR AMOLED screen, 5500mAh massive battery, and blazing-fast 100W SUPERVOOC charging.",
+      "specs": [
+        { "label": "Display", "value": "6.78-inch 1.5K 120Hz LTPO4 ProXDR AMOLED, 4500 nits peak" },
+        { "label": "Processor", "value": "Qualcomm Snapdragon 8 Gen 2 (4nm)" },
+        { "label": "Rear Camera", "value": "50MP Sony IMX890 OIS + 8MP Ultra-Wide + 2MP Macro" },
+        { "label": "Battery & Charging", "value": "5500 mAh Battery with 100W SUPERVOOC" }
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1605236453806-6ff36851218e?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1567581935884-3349723552ca?w=800&auto=format&fit=crop&q=80"
+      ],
+      "variants": [
+        { "ram": "8 GB", "storage": "128 GB", "price": "39999", "label": "8 GB RAM · 128 GB Storage" },
+        { "ram": "16 GB", "storage": "256 GB", "price": "45999", "label": "16 GB RAM · 256 GB Storage" }
+      ]
+    },
+    {
+      "id": "prod-redmi-note-13-pro-plus-5g",
+      "brand": "Redmi",
+      "model": "Note 13 Pro+ 5G",
+      "name": "Redmi Note 13 Pro+ 5G",
+      "slug": "redmi-note-13-pro-plus-5g",
+      "price": "29999",
+      "published": true,
+      "description": "Redmi Note 13 Pro+ 5G boasts an industry-leading 200MP OIS camera with 4X lossless zoom, 3D curved 1.5K 120Hz AMOLED display, 120W HyperCharge (100% in 19 mins), IP68 water resistance, and MediaTek Dimensity 7200-Ultra.",
+      "specs": [
+        { "label": "Display", "value": "6.67-inch 1.5K 3D Curved 120Hz AMOLED, Dolby Vision" },
+        { "label": "Processor", "value": "MediaTek Dimensity 7200-Ultra (4nm)" },
+        { "label": "Rear Camera", "value": "200MP Samsung ISOCELL HP3 OIS + 8MP Ultra-Wide + 2MP Macro" },
+        { "label": "Front Camera", "value": "16MP In-display Selfie Camera" },
+        { "label": "Battery & Charging", "value": "5000 mAh Battery with 120W HyperCharge" },
+        { "label": "Build & Durability", "value": "IP68 Water & Dust Resistant, Gorilla Glass Victus" }
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=800&auto=format&fit=crop&q=80"
+      ],
+      "variants": [
+        { "ram": "8 GB", "storage": "256 GB", "price": "29999", "label": "8 GB RAM · 256 GB Storage" },
+        { "ram": "12 GB", "storage": "256 GB", "price": "31999", "label": "12 GB RAM · 256 GB Storage" },
+        { "ram": "12 GB", "storage": "512 GB", "price": "33999", "label": "12 GB RAM · 512 GB Storage" }
+      ]
+    },
+    {
+      "id": "prod-apple-iphone-16",
+      "brand": "Apple",
+      "model": "iPhone 16",
+      "name": "Apple iPhone 16",
+      "slug": "apple-iphone-16",
+      "price": "79900",
+      "published": true,
+      "description": "Apple iPhone 16 is built for Apple Intelligence, powered by the A18 chip. Highlights include Camera Control, 48MP Fusion camera with 2x optical-quality telephoto, Action button, and longer battery life.",
+      "specs": [
+        { "label": "Display", "value": "6.1-inch Super Retina XDR OLED, Dynamic Island, 2000 nits peak" },
+        { "label": "Processor", "value": "Apple A18 Bionic Chip with 6-core CPU & 5-core GPU" },
+        { "label": "Rear Camera", "value": "48MP Fusion OIS + 12MP Ultra-Wide with Macro" },
+        { "label": "Front Camera", "value": "12MP TrueDepth Camera with Autofocus" },
+        { "label": "Controls", "value": "Camera Control Button + Action Button" },
+        { "label": "Durability", "value": "IP68 Water Resistance, Ceramic Shield front" }
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=800&auto=format&fit=crop&q=80",
+        "https://upload.wikimedia.org/wikipedia/commons/7/72/About_iPhone_16_Ultramarine.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/3/39/About_iPhone_16_in_Pink.jpg",
+        "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=80"
+      ],
+      "variants": [
+        { "ram": "8 GB", "storage": "128 GB", "price": "79900", "label": "128 GB Storage" },
+        { "ram": "8 GB", "storage": "256 GB", "price": "89900", "label": "256 GB Storage" },
+        { "ram": "8 GB", "storage": "512 GB", "price": "109900", "label": "512 GB Storage" }
+      ]
+    },
+    {
+      "id": "prod-realme-13-pro-plus-5g",
+      "brand": "Realme",
+      "model": "13 Pro+ 5G",
+      "name": "Realme 13 Pro+ 5G",
+      "slug": "realme-13-pro-plus-5g",
+      "price": "31999",
+      "published": true,
+      "description": "Realme 13 Pro+ 5G features the world's first Sony LYT-701 OIS camera and 50MP Periscope telephoto camera with Monet-inspired luxury design, Snapdragon 7s Gen 2, and 80W SUPERVOOC charge.",
+      "specs": [
+        { "label": "Display", "value": "6.7-inch 120Hz Curved AMOLED, Pro-XDR, 2000 nits" },
+        { "label": "Processor", "value": "Qualcomm Snapdragon 7s Gen 2 (4nm)" },
+        { "label": "Rear Camera", "value": "50MP Sony LYT-701 OIS + 50MP Sony LYT-600 3X Periscope + 8MP Ultra-Wide" },
+        { "label": "Front Camera", "value": "32MP Sony Ultra-Clear Selfie" },
+        { "label": "Battery & Charging", "value": "5200 mAh with 80W SUPERVOOC Charge" }
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=800&auto=format&fit=crop&q=80"
+      ],
+      "variants": [
+        { "ram": "8 GB", "storage": "256 GB", "price": "31999", "label": "8 GB RAM · 256 GB Storage" },
+        { "ram": "12 GB", "storage": "256 GB", "price": "33999", "label": "12 GB RAM · 256 GB Storage" },
+        { "ram": "12 GB", "storage": "512 GB", "price": "36999", "label": "12 GB RAM · 512 GB Storage" }
+      ]
+    }
+  ],
+  "catalogMode": "live",
   "gallery": [
     {
       "src": "/assets/gallery/photo-001.jpg",

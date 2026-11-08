@@ -114,7 +114,7 @@ const defaultContent = {
   reviews: clone(reviews),
   posts: [clone(post)],
   products: [],
-  catalogMode: "samples",
+  catalogMode: "live",
   gallery: null,
   privacySections: clone(privacySections),
   hero: {
@@ -138,7 +138,7 @@ const defaultContent = {
 
 export let heroContent = clone(defaultContent.hero);
 export let products = [];
-export let catalogMode = "samples";
+export let catalogMode = "live";
 export let managedPosts = [clone(post)];
 export let theme = clone(defaultContent.theme);
 export let galleryContent = null;
