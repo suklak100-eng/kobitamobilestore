@@ -1,3 +1,5 @@
+import { PHONE_BRANDS, PHONE_DATABASE } from "./phone-db.js";
+
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 let content = null;
@@ -106,18 +108,299 @@ function renderHours() {
 }
 
 function renderProducts() {
-  $("#product-list").innerHTML = content.products.length ? content.products.map((item) => `<article class="managed-row"><div><strong>${esc(item.name || `${item.brand} ${item.model}`)}</strong><small>${esc(item.brand)} · ${item.price ? `₹${esc(item.price)}` : "দাম যোগ করা হয়নি"} · ${item.published === false ? "Unpublished" : "Published"}</small></div><img src="${esc(item.images?.[0] || "/assets/kabita-logo.png")}" alt="" style="width:3.2rem;height:3.2rem;object-fit:cover"><div class="row-actions"><button class="small-button" data-action="edit-product" data-id="${esc(item.id)}" type="button">Edit</button><button class="small-button is-danger" data-action="delete-product" data-id="${esc(item.id)}" type="button">Delete</button></div></article>`).join("") : `<div class="section-card"><strong>এখনো কোনো ফোন যোগ করা হয়নি।</strong><p>“নতুন ফোন যোগ করুন” চাপলে model, price, specifications ও ৩টি ছবি দিতে পারবেন।</p></div>`;
+  $("#product-list").innerHTML = content.products.length ? content.products.map((item) => {
+    const vCount = Array.isArray(item.variants) ? item.variants.length : 0;
+    const vText = vCount > 0 ? ` · 📦 ${vCount} Variants (${item.variants.map((v) => v.ram ? `${v.ram}/${v.storage}` : v.storage || v.price).slice(0, 3).join(", ")}${vCount > 3 ? "..." : ""})` : "";
+    return `<article class="managed-row"><div><strong>${esc(item.name || `${item.brand} ${item.model}`)}</strong><small>${esc(item.brand)} · ${item.price ? `₹${esc(item.price)}` : "দাম যোগ করা হয়নি"}${vText} · ${item.published === false ? "Unpublished" : "Published"}</small></div><img src="${esc(item.images?.[0] || "/assets/kabita-logo.png")}" alt="" style="width:3.2rem;height:3.2rem;object-fit:cover"><div class="row-actions"><button class="small-button" data-action="edit-product" data-id="${esc(item.id)}" type="button">Edit</button><button class="small-button is-danger" data-action="delete-product" data-id="${esc(item.id)}" type="button">Delete</button></div></article>`;
+  }).join("") : `<div class="section-card"><strong>এখনো কোনো ফোন যোগ করা হয়নি।</strong><p>“নতুন ফোন যোগ করুন” চাপলে model, price, specifications ও ৩টি ছবি দিতে পারবেন।</p></div>`;
 }
 
 function newId(prefix) { return `${prefix}-${crypto.randomUUID?.() || Date.now().toString(36)}`; }
 
+function renderVariantsEditor() {
+  const container = $("#variants-list-container");
+  if (!container || !editingProduct) return;
+  const list = editingProduct.variants || [];
+  if (!list.length) {
+    container.innerHTML = `<div class="variants-empty-note">কোনো RAM/Storage ভ্যারিয়েন্ট যোগ করা হয়নি। উপরে মডেল সিলেক্ট করলে অথবা “+ ভ্যারিয়েন্ট যোগ করুন” বাটনে চাপলে 8GB, 12GB ইত্যাদি কনফিগারেশন যোগ করতে পারবেন।</div>`;
+    return;
+  }
+  container.innerHTML = list.map((v, idx) => `
+    <div class="variant-item-row" data-variant-row="${idx}">
+      <div class="variant-field">
+        <label>RAM (যেমন: 8 GB)</label>
+        <input type="text" data-variant-ram value="${esc(v.ram || "")}" placeholder="8 GB" maxlength="30">
+      </div>
+      <div class="variant-field">
+        <label>Storage (যেমন: 128 GB)</label>
+        <input type="text" data-variant-storage value="${esc(v.storage || "")}" placeholder="128 GB" maxlength="30">
+      </div>
+      <div class="variant-field">
+        <label>Price in ₹ (দাম)</label>
+        <input type="text" data-variant-price inputmode="decimal" value="${esc(v.price || "")}" placeholder="24999" maxlength="20">
+      </div>
+      <button type="button" class="small-button is-danger remove-variant-btn" data-variant-remove="${idx}" title="ভ্যারিয়েন্ট মুছুন">সরান ×</button>
+    </div>
+  `).join("");
+}
+
+function syncCurrentVariantsFromDOM() {
+  if (!editingProduct) return;
+  const rows = $$(".variant-item-row", $("#product-form"));
+  editingProduct.variants = rows.map((row) => {
+    const ram = (row.querySelector("[data-variant-ram]")?.value || "").trim();
+    const storage = (row.querySelector("[data-variant-storage]")?.value || "").trim();
+    const price = (row.querySelector("[data-variant-price]")?.value || "").replace(/[^0-9,.]/g, "").trim();
+    const label = [ram ? `${ram} RAM` : "", storage ? `${storage} Storage` : ""].filter(Boolean).join(" · ") || (ram && storage ? `${ram} / ${storage}` : ram || storage || "");
+    return { ram, storage, price, label };
+  });
+}
+
+function setupBrandModelHandlers() {
+  const brandSelect = $("#product-brand-select");
+  const customBrandInput = $("#product-custom-brand-input");
+  const modelSelect = $("#product-model-select");
+  const customModelInput = $("#product-custom-model-input");
+  const nameInput = $("#product-name-input");
+  const priceInput = $("#product-price-input");
+  const descInput = $("#product-description-input");
+  const specsInput = $("#product-specs-input");
+  const banner = $("#autofill-banner");
+  const bannerTitle = $("#autofill-banner-title");
+
+  if (!brandSelect || !modelSelect) return;
+
+  brandSelect.addEventListener("change", () => {
+    const brand = brandSelect.value;
+    if (brand === "__custom__") {
+      customBrandInput.style.display = "block";
+      customBrandInput.required = true;
+      customBrandInput.focus();
+      modelSelect.innerHTML = `<option value="">-- মডেলের নাম টাইপ করুন --</option><option value="__custom__" selected>+ কাস্টম মডেল লিখুন...</option>`;
+      modelSelect.disabled = false;
+      customModelInput.style.display = "block";
+      customModelInput.required = true;
+      if (banner) banner.hidden = true;
+      return;
+    }
+
+    customBrandInput.style.display = "none";
+    customBrandInput.required = false;
+
+    if (!brand) {
+      modelSelect.innerHTML = `<option value="">-- প্রথমে ব্র্যান্ড নির্বাচন করুন --</option>`;
+      modelSelect.disabled = true;
+      customModelInput.style.display = "none";
+      if (banner) banner.hidden = true;
+      return;
+    }
+
+    const models = PHONE_DATABASE[brand] || [];
+    modelSelect.innerHTML = `
+      <option value="">-- মডেল নির্বাচন করুন (${models.length}টি মডেল উপলব্ধ) --</option>
+      ${models.map((m) => `<option value="${esc(m.model)}">${esc(m.model)} (₹${esc(m.price)})</option>`).join("")}
+      <option value="__custom__">+ কাস্টম মডেল লিখুন...</option>
+    `;
+    modelSelect.disabled = false;
+    customModelInput.style.display = "none";
+    customModelInput.required = false;
+    if (banner) banner.hidden = true;
+  });
+
+  modelSelect.addEventListener("change", () => {
+    const selectedBrand = brandSelect.value;
+    const selectedModel = modelSelect.value;
+
+    if (selectedModel === "__custom__") {
+      customModelInput.style.display = "block";
+      customModelInput.required = true;
+      customModelInput.focus();
+      if (banner) banner.hidden = true;
+      return;
+    }
+
+    customModelInput.style.display = "none";
+    customModelInput.required = false;
+
+    if (!selectedModel || !selectedBrand || selectedBrand === "__custom__") {
+      if (banner) banner.hidden = true;
+      return;
+    }
+
+    const models = PHONE_DATABASE[selectedBrand] || [];
+    const itemData = models.find((m) => m.model === selectedModel);
+    if (!itemData) return;
+
+    // Auto-fill all details
+    nameInput.value = itemData.name || `${selectedBrand} ${itemData.model}`;
+    priceInput.value = itemData.price || "";
+    descInput.value = itemData.description || "";
+    specsInput.value = (itemData.specs || []).map((s) => `${s.label}: ${s.value}`).join("\n");
+
+    // Auto-fill variants
+    if (Array.isArray(itemData.variants) && itemData.variants.length > 0) {
+      editingProduct.variants = structuredClone(itemData.variants);
+    } else {
+      editingProduct.variants = [];
+    }
+    renderVariantsEditor();
+
+    // Show banner & toast
+    if (banner) {
+      if (bannerTitle) bannerTitle.textContent = `${itemData.name} — ₹${itemData.price}`;
+      banner.hidden = false;
+    }
+    toast(`⚡ ${itemData.name}-এর Indian retail দাম, স্পেক্স ও ${editingProduct.variants.length}টি ভ্যারিয়েন্ট অটোফিল হয়েছে!`);
+  });
+
+  // Variant addition & removal handlers
+  $("#add-variant-btn")?.addEventListener("click", () => {
+    syncCurrentVariantsFromDOM();
+    editingProduct.variants.push({ ram: "8 GB", storage: "256 GB", price: "", label: "" });
+    renderVariantsEditor();
+  });
+
+  $("#variants-list-container")?.addEventListener("click", (e) => {
+    const removeBtn = e.target.closest("[data-variant-remove]");
+    if (!removeBtn) return;
+    const idx = Number(removeBtn.dataset.variantRemove);
+    syncCurrentVariantsFromDOM();
+    editingProduct.variants.splice(idx, 1);
+    renderVariantsEditor();
+  });
+}
+
 function showProductEditor(item = null) {
-  editingProduct = structuredClone(item || { id: newId("phone"), slug: "", brand: "", model: "", name: "", price: "", description: "", specs: [], images: [], published: true });
+  editingProduct = structuredClone(item || {
+    id: newId("phone"),
+    slug: "",
+    brand: "",
+    model: "",
+    name: "",
+    price: "",
+    description: "",
+    specs: [],
+    images: [],
+    published: true,
+    variants: []
+  });
+  if (!Array.isArray(editingProduct.variants)) editingProduct.variants = [];
+  if (!Array.isArray(editingProduct.images)) editingProduct.images = [];
+  if (!Array.isArray(editingProduct.specs)) editingProduct.specs = [];
+
+  const isKnownBrand = PHONE_BRANDS.includes(editingProduct.brand);
+  const selectedBrand = isKnownBrand ? editingProduct.brand : (editingProduct.brand ? "__custom__" : "");
+  const brandModels = PHONE_DATABASE[editingProduct.brand] || [];
+  const isKnownModel = brandModels.some((m) => m.model === editingProduct.model);
+  const selectedModel = isKnownModel ? editingProduct.model : (editingProduct.model ? "__custom__" : "");
+
   const form = $("#product-form");
-  form.innerHTML = `<div class="section-card-head"><div><p class="eyebrow">PRODUCT DETAILS</p><h3>${item ? "ফোন edit করুন" : "নতুন ফোন যোগ করুন"}</h3></div><button class="icon-button" type="button" data-action="close-product">বন্ধ করুন ×</button></div>
-    <div class="field-grid"><label>Brand<input name="brand" value="${esc(editingProduct.brand)}" required maxlength="80"></label><label>Model<input name="model" value="${esc(editingProduct.model)}" required maxlength="120"></label><label>Card name<input name="name" value="${esc(editingProduct.name)}" maxlength="180" placeholder="Brand + model"></label><label>Price in ₹<input name="price" inputmode="decimal" value="${esc(editingProduct.price)}" maxlength="20" placeholder="e.g. 14999"></label><label class="field-wide">Description<textarea name="description" rows="3" maxlength="1000">${esc(editingProduct.description)}</textarea></label><label class="field-wide">Specifications · প্রতি লাইনে label: value<textarea name="specs" rows="5" placeholder="Display: 6.5 inch&#10;Memory: 8 GB / 128 GB">${esc((editingProduct.specs || []).map((spec) => `${spec.label}: ${spec.value}`).join("\n"))}</textarea></label><label class="checkbox-line"><input name="published" type="checkbox" ${editingProduct.published === false ? "" : "checked"}> Catalogue-এ publish করুন</label></div>
-    <h3>সর্বোচ্চ ৩টি phone photo</h3><div class="product-edit-images">${[0, 1, 2].map((index) => `<label class="image-slot"><img data-product-preview="${index}" src="${esc(editingProduct.images?.[index] || "/assets/kabita-logo.png")}" alt="Phone image ${index + 1}"><span>Photo ${index + 1}</span><input type="file" data-product-upload="${index}" accept="image/jpeg,image/png,image/webp"><button type="button" class="small-button" data-action="clear-product-image" data-index="${index}">ছবি সরান</button></label>`).join("")}</div>
-    <div class="editor-actions"><button class="button button--primary" type="submit">ফোনের তথ্য যোগ করুন</button><button class="button button--quiet" type="button" data-action="close-product">বাতিল</button></div>`;
+  form.innerHTML = `
+    <div class="section-card-head">
+      <div>
+        <p class="eyebrow">PRODUCT DETAILS</p>
+        <h3>${item ? "ফোন edit করুন" : "নতুন ফোন যোগ করুন"}</h3>
+      </div>
+      <button class="icon-button" type="button" data-action="close-product">বন্ধ করুন ×</button>
+    </div>
+
+    <!-- Smart Autofill Banner -->
+    <div class="autofill-banner" id="autofill-banner" ${isKnownModel ? "" : "hidden"}>
+      <div class="autofill-banner-content">
+        <span class="autofill-icon">⚡</span>
+        <div>
+          <strong id="autofill-banner-title">${esc(editingProduct.name || "ফোন তথ্য")}</strong>
+          <p id="autofill-banner-desc">Indian retail বাজার অনুযায়ী সঠিক দাম, স্পেসিফিকেশন ও RAM/Storage ভ্যারিয়েন্ট স্বয়ংক্রিয়ভাবে লোড হয়েছে। প্রয়োজনে নিচের ঘরে যেকোনো পরিবর্তন করতে পারেন।</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-grid">
+      <!-- Brand Dropdown -->
+      <label class="field-dropdown-wrap">
+        <span>স্মার্টফোন ব্র্যান্ড (Select Brand) *</span>
+        <select id="product-brand-select" class="admin-select" required>
+          <option value="">-- ব্র্যান্ড নির্বাচন করুন --</option>
+          ${PHONE_BRANDS.map((b) => `<option value="${esc(b)}"${selectedBrand === b ? " selected" : ""}>${esc(b)}</option>`).join("")}
+          <option value="__custom__"${selectedBrand === "__custom__" ? " selected" : ""}>+ অন্য কোনো ব্র্যান্ড (Custom Brand)...</option>
+        </select>
+        <input type="text" id="product-custom-brand-input" name="customBrand" value="${selectedBrand === "__custom__" ? esc(editingProduct.brand) : ""}" placeholder="ব্র্যান্ডের নাম লিখুন" maxlength="80" style="${selectedBrand === "__custom__" ? "" : "display:none;margin-top:0.4rem;"}">
+      </label>
+
+      <!-- Model Dropdown -->
+      <label class="field-dropdown-wrap">
+        <span>মডেল নির্বাচন করুন (Select Model) *</span>
+        <select id="product-model-select" class="admin-select" ${brandModels.length ? "" : "disabled"} required>
+          <option value="">-- প্রথমে ব্র্যান্ড নির্বাচন করুন --</option>
+          ${brandModels.map((m) => `<option value="${esc(m.model)}"${selectedModel === m.model ? " selected" : ""}>${esc(m.model)} (₹${esc(m.price)})</option>`).join("")}
+          <option value="__custom__"${selectedModel === "__custom__" ? " selected" : ""}>+ কাস্টম মডেল লিখুন...</option>
+        </select>
+        <input type="text" id="product-custom-model-input" name="customModel" value="${selectedModel === "__custom__" ? esc(editingProduct.model) : ""}" placeholder="মডেলের নাম লিখুন" maxlength="120" style="${selectedModel === "__custom__" ? "" : "display:none;margin-top:0.4rem;"}">
+      </label>
+
+      <!-- Card Name -->
+      <label>
+        <span>কার্ড নেম (Card name / Display Title)</span>
+        <input id="product-name-input" name="name" value="${esc(editingProduct.name)}" maxlength="180" placeholder="Brand + model">
+      </label>
+
+      <!-- Indian Base Price -->
+      <label>
+        <span>মূল দাম (Price in ₹)</span>
+        <input id="product-price-input" name="price" inputmode="decimal" value="${esc(editingProduct.price)}" maxlength="20" placeholder="e.g. 19999">
+      </label>
+
+      <!-- Description -->
+      <label class="field-wide">
+        <span>বিবরণ (Marketing Description)</span>
+        <textarea id="product-description-input" name="description" rows="3" maxlength="1200">${esc(editingProduct.description)}</textarea>
+      </label>
+
+      <!-- Specifications -->
+      <label class="field-wide">
+        <span>স্পেসিফিকেশন (Specifications · প্রতি লাইনে Label: Value)</span>
+        <textarea id="product-specs-input" name="specs" rows="6" placeholder="Display: 6.78 inch AMOLED 120Hz&#10;Processor: Snapdragon 7 Gen 3&#10;Camera: 50MP + 50MP&#10;Battery: 5500 mAh, 80W">${esc((editingProduct.specs || []).map((s) => `${s.label}: ${s.value}`).join("\n"))}</textarea>
+      </label>
+
+      <label class="checkbox-line field-wide">
+        <input name="published" type="checkbox" ${editingProduct.published === false ? "" : "checked"}>
+        <span>ক্যাটালগে সক্রিয় রাখুন (Publish in Catalogue)</span>
+      </label>
+    </div>
+
+    <!-- Flipkart-style RAM/Storage Variants Section -->
+    <div class="variants-admin-card">
+      <div class="variants-admin-head">
+        <div>
+          <h4>📦 RAM ও Storage ভ্যারিয়েন্ট (Flipkart-Style Variants)</h4>
+          <p>গ্রাহক ওয়েবসাইটে 8GB/128GB, 12GB/256GB ইত্যাদি ক্লিক করলে লাইভ দাম ও বিস্তারিত পরিবর্তিত হবে।</p>
+        </div>
+        <button type="button" class="button button--quiet" id="add-variant-btn" style="min-height:2.2rem;font-size:0.75rem;">+ ভ্যারিয়েন্ট যোগ করুন</button>
+      </div>
+      <div class="variants-list-container" id="variants-list-container"></div>
+    </div>
+
+    <h3>সর্বোচ্চ ৩টি ফোনের ছবি</h3>
+    <div class="product-edit-images">
+      ${[0, 1, 2].map((index) => `
+        <label class="image-slot">
+          <img data-product-preview="${index}" src="${esc(editingProduct.images?.[index] || "/assets/kabita-logo.png")}" alt="Phone image ${index + 1}">
+          <span>Photo ${index + 1}</span>
+          <input type="file" data-product-upload="${index}" accept="image/jpeg,image/png,image/webp">
+          <button type="button" class="small-button" data-action="clear-product-image" data-index="${index}">ছবি সরান</button>
+        </label>
+      `).join("")}
+    </div>
+
+    <div class="editor-actions">
+      <button class="button button--primary button--save" type="submit">ফোনের তথ্য যোগ করুন</button>
+      <button class="button button--quiet" type="button" data-action="close-product">বাতিল</button>
+    </div>
+  `;
+
+  renderVariantsEditor();
+  setupBrandModelHandlers();
+
   form.hidden = false;
   form.scrollIntoView({ behavior: "smooth", block: "start" });
 }
@@ -383,23 +666,50 @@ $("#product-form").addEventListener("submit", (event) => {
   event.preventDefault();
   if (!editingProduct) return;
   const form = new FormData(event.currentTarget);
-  const brand = String(form.get("brand") || "").trim();
-  const model = String(form.get("model") || "").trim();
+
+  const brandSelect = $("#product-brand-select");
+  const customBrandInput = $("#product-custom-brand-input");
+  let brand = brandSelect ? (brandSelect.value === "__custom__" ? customBrandInput.value.trim() : brandSelect.value.trim()) : String(form.get("brand") || "").trim();
+
+  const modelSelect = $("#product-model-select");
+  const customModelInput = $("#product-custom-model-input");
+  let model = modelSelect ? (modelSelect.value === "__custom__" ? customModelInput.value.trim() : modelSelect.value.trim()) : String(form.get("model") || "").trim();
+
+  if (!brand) {
+    toast(currentAdminLang === "bn" ? "দয়া করে ফোনের ব্র্যান্ড নির্বাচন করুন।" : "Please select or enter phone brand.", true);
+    return;
+  }
+  if (!model) {
+    toast(currentAdminLang === "bn" ? "দয়া করে ফোনের মডেল নির্বাচন করুন।" : "Please select or enter phone model.", true);
+    return;
+  }
+
+  // Sync variants from the DOM rows
+  syncCurrentVariantsFromDOM();
+
   const slugBase = `${brand}-${model}`.toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   editingProduct.brand = brand;
   editingProduct.model = model;
   editingProduct.name = String(form.get("name") || `${brand} ${model}`).trim();
   editingProduct.slug = editingProduct.slug || `${slugBase || "phone"}-${editingProduct.id.slice(-8).toLowerCase().replace(/[^a-z0-9]/g, "")}`;
-  editingProduct.price = String(form.get("price") || "").replace(/[^0-9,.]/g, "");
+
+  let price = String(form.get("price") || "").replace(/[^0-9,.]/g, "");
+  if (!price && editingProduct.variants.length > 0 && editingProduct.variants[0].price) {
+    price = editingProduct.variants[0].price;
+  }
+  editingProduct.price = price;
   editingProduct.description = String(form.get("description") || "").trim();
   editingProduct.specs = String(form.get("specs") || "").split(/\r?\n/).map((line) => { const [label, ...value] = line.split(":"); return { label: label.trim(), value: value.join(":").trim() }; }).filter((spec) => spec.label && spec.value);
   editingProduct.published = Boolean(form.get("published"));
+
   const index = content.products.findIndex((item) => item.id === editingProduct.id);
   if (index < 0) content.products.push(editingProduct); else content.products[index] = editingProduct;
   content.catalogMode = "live";
   editingProduct = null;
   $("#product-form").hidden = true;
-  renderProducts(); markDirty(); toast("ফোনটি editor-এ যোগ হয়েছে। উপরের “পরিবর্তন সেভ করুন” চাপুন।");
+  renderProducts();
+  markDirty();
+  toast(currentAdminLang === "bn" ? "ফোনটি catalogue-এ যোগ/আপডেট হয়েছে। স্থায়ী করতে উপরের “সংরক্ষণ ও প্রকাশ” বাটনে চাপুন।" : "Phone updated. Click 'Save & Publish' at the top to make it live.");
 });
 
 $("#product-form").addEventListener("change", async (event) => {

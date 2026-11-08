@@ -280,3 +280,42 @@ if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-mot
     });
   }
 }
+
+// Flipkart-style RAM & Storage variant selection on product detail page
+document.querySelectorAll(".product-variant-picker").forEach((picker) => {
+  const chips = [...picker.querySelectorAll(".variant-chip")];
+  const priceDisplay = document.querySelector(".product-price");
+  const waBtn = document.querySelector(".product-enquiry-actions a.button--whatsapp");
+  const productName = picker.dataset.productName || "ফোন";
+  const baseWa = picker.dataset.baseWa || "";
+
+  chips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      chips.forEach((c) => {
+        c.classList.remove("is-selected");
+        c.setAttribute("aria-checked", "false");
+      });
+      chip.classList.add("is-selected");
+      chip.setAttribute("aria-checked", "true");
+
+      const price = chip.dataset.variantPrice;
+      const label = chip.dataset.variantLabel || chip.dataset.variantRam || "";
+      if (price && priceDisplay) {
+        priceDisplay.textContent = `₹${price}`;
+      }
+      if (waBtn && baseWa) {
+        const message = `আসসালামু আলাইকুম, ${productName} (${label}) ফোনটির বর্তমান দাম ও উপলভ্যতা জানতে চাই।`;
+        waBtn.href = `${baseWa}?text=${encodeURIComponent(message)}`;
+      }
+      const facts = [...document.querySelectorAll(".detail-facts div")];
+      const ramFact = facts.find((row) => {
+        const text = (row.querySelector("span")?.textContent || "").toLowerCase();
+        return text.includes("ram") || text.includes("memory") || text.includes("storage");
+      });
+      if (ramFact && label) {
+        const strong = ramFact.querySelector("strong");
+        if (strong) strong.textContent = label;
+      }
+    });
+  });
+});

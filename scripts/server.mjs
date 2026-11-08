@@ -219,10 +219,16 @@ function normalizeContent(raw) {
     if (usedProductSlugs.has(slug)) slug = `${slug}-${index + 1}`;
     usedProductSlugs.add(slug);
     const specs = Array.isArray(item.specs) ? item.specs.slice(0, 24).map((spec) => ({ label: cleanText(spec.label, 80), value: cleanText(spec.value, 240) })).filter((spec) => spec.label && spec.value) : [];
+    const variants = Array.isArray(item.variants) ? item.variants.slice(0, 16).map((v) => ({
+      ram: cleanText(v.ram, 40),
+      storage: cleanText(v.storage, 40),
+      price: cleanText(v.price, 20).replace(/[^0-9,.]/g, ""),
+      label: cleanText(v.label, 80) || (v.ram && v.storage ? `${cleanText(v.ram, 40)} / ${cleanText(v.storage, 40)}` : cleanText(v.ram || v.storage || "", 80)),
+    })).filter((v) => v.ram || v.storage || v.price) : [];
     return {
       id: cleanText(item.id, 80, `phone-${index + 1}`), slug, brand: cleanText(item.brand, 80, "Phone"), model: cleanText(item.model, 120),
       name: cleanText(item.name, 180, "Phone"), price: cleanText(item.price, 20).replace(/[^0-9,.]/g, ""), description: cleanText(item.description, 1000),
-      specs, images: Array.isArray(item.images) ? item.images.slice(0, 3).map((src) => cleanLocalImage(src, true)).filter(Boolean) : [], published: item.published !== false,
+      specs, variants, images: Array.isArray(item.images) ? item.images.slice(0, 3).map((src) => cleanLocalImage(src, true)).filter(Boolean) : [], published: item.published !== false,
     };
   }) : [];
   const colors = raw.theme || {};

@@ -333,13 +333,51 @@ function productCatalog(photos) {
 
 function productDetail(item) {
   const images = (item.images || []).filter(Boolean).slice(0, 3);
-  const message = `আসসালামু আলাইকুম, ${item.name} ফোনটির বর্তমান দাম ও উপলভ্যতা জানতে চাই।`;
-  const wa = business.whatsappNumber ? `https://wa.me/${encodeURIComponent(String(business.whatsappNumber).replace(/\D/g, ""))}?text=${encodeURIComponent(message)}` : "";
+  const variants = Array.isArray(item.variants) ? item.variants : [];
+  const initialVariant = variants[0] || null;
+  const initialPrice = initialVariant?.price || item.price || "";
+  const initialVariantLabel = initialVariant?.label || (initialVariant?.ram && initialVariant?.storage ? `${initialVariant.ram} / ${initialVariant.storage}` : "");
+  const baseMessage = initialVariantLabel
+    ? `আসসালামু আলাইকুম, ${item.name} (${initialVariantLabel}) ফোনটির বর্তমান দাম ও উপলভ্যতা জানতে চাই।`
+    : `আসসালামু আলাইকুম, ${item.name} ফোনটির বর্তমান দাম ও উপলভ্যতা জানতে চাই।`;
+  const wa = business.whatsappNumber ? `https://wa.me/${encodeURIComponent(String(business.whatsappNumber).replace(/\D/g, ""))}?text=${encodeURIComponent(baseMessage)}` : "";
+  const baseWaUrl = business.whatsappNumber ? `https://wa.me/${encodeURIComponent(String(business.whatsappNumber).replace(/\D/g, ""))}` : "";
+
   return `<main id="main-content" class="wrap page-main sample-detail-page product-detail-page">
     ${breadcrumb([{ href: "/", label: "Home" }, { href: "/catalog/", label: "Browse phones" }, { label: item.name }])}
     <section class="sample-detail-layout">
       <div class="product-photo-gallery">${images.length ? images.map((src, index) => `<figure><img src="${esc(src)}" alt="${esc(item.name)} photo ${index + 1}"${index ? " loading=\"lazy\"" : ""}></figure>`).join("") : `<div class="sample-product-art">${deviceIllustration({ brand: item.brand, color: "orange" })}</div>`}</div>
-      <div class="sample-detail-copy">${tag(item.brand)}<h1>${esc(item.name)}</h1><p class="product-price">${item.price ? `₹${esc(item.price)}` : "Call for current price"}</p><p class="sample-lede">${esc(item.description || "Contact the shop to confirm current details and availability.")}</p><div class="detail-facts">${(item.specs || []).map((spec) => `<div><span>${esc(spec.label)}</span><strong>${esc(spec.value)}</strong></div>`).join("")}</div><p class="detail-disclaimer">Availability and prices can change. Please confirm directly with the shop.</p><div class="product-enquiry-actions">${callLink("Call to enquire")}${wa ? `<a class="button button--whatsapp" href="${esc(wa)}" target="_blank" rel="noopener noreferrer">WhatsApp about this phone</a>` : ""}</div></div>
+      <div class="sample-detail-copy">
+        ${tag(item.brand)}
+        <h1>${esc(item.name)}</h1>
+        <p class="product-price" data-base-price="${esc(item.price)}">${initialPrice ? `₹${esc(initialPrice)}` : "Call for current price"}</p>
+        ${variants.length ? `
+          <div class="product-variant-picker" data-product-name="${esc(item.name)}" data-base-wa="${esc(baseWaUrl)}">
+            <span class="variant-picker-title">
+              <strong data-localized data-en="Configuration (RAM &amp; Storage):" data-bn="র‍্যাম ও স্টোরেজ বেছে নিন:">Configuration (RAM &amp; Storage):</strong>
+            </span>
+            <div class="variant-chips" role="radiogroup" aria-label="Select configuration">
+              ${variants.map((v, i) => `
+                <button type="button" class="variant-chip ${i === 0 ? "is-selected" : ""}"
+                  role="radio"
+                  aria-checked="${i === 0 ? "true" : "false"}"
+                  data-variant-index="${i}"
+                  data-variant-ram="${esc(v.ram || "")}"
+                  data-variant-storage="${esc(v.storage || "")}"
+                  data-variant-price="${esc(v.price || "")}"
+                  data-variant-label="${esc(v.label || (v.ram && v.storage ? `${v.ram} / ${v.storage}` : v.ram || v.storage || ""))}">
+                  <span class="chip-config">${esc(v.ram && v.storage ? `${v.ram} / ${v.storage}` : (v.label || v.ram || v.storage || `Option ${i + 1}`))}</span>
+                  ${v.price ? `<span class="chip-price">₹${esc(v.price)}</span>` : ""}
+                </button>
+              `).join("")}
+            </div>
+          </div>
+        ` : ""}
+        <p class="sample-lede">${esc(item.description || "Contact the shop to confirm current details and availability.")}</p>
+        <div class="detail-facts">${(item.specs || []).map((spec) => `<div><span>${esc(spec.label)}</span><strong>${esc(spec.value)}</strong></div>`).join("")}</div>
+        <p class="detail-disclaimer">Availability and prices can change. Please confirm directly with the shop.</p>
+        <div class="product-enquiry-actions">${callLink("Call to enquire")}${wa ? `<a class="button button--whatsapp" href="${esc(wa)}" target="_blank" rel="noopener noreferrer">WhatsApp about this phone</a>` : ""}</div>
+      </div>
     </section>
     <div class="sample-related"><a class="text-link" href="/catalog/">← Back to catalogue</a><span>Ask the shop to confirm current stock and final price.</span></div>
   </main>`;

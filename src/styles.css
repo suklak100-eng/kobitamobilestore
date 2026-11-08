@@ -402,6 +402,14 @@ button, input { font: inherit; }
 .product-photo-gallery figure:first-child { grid-column: 1 / -1; min-height: 27rem; }
 .product-photo-gallery img { width: 100%; height: 100%; min-height: inherit; object-fit: cover; }
 .product-price { margin: .6rem 0 0; color: var(--ink); font-family: var(--display); font-size: 2.4rem; font-weight: 700; }
+.product-variant-picker { margin: 1.25rem 0 1.15rem; padding: 1.1rem 1.25rem; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.variant-picker-title { display: block; margin-bottom: 0.65rem; font-size: 0.84rem; font-weight: 700; color: var(--ink); }
+.variant-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.variant-chip { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 0.15rem; padding: 0.52rem 0.95rem; border: 1.5px solid var(--line); border-radius: 6px; background: var(--paper); color: var(--ink); font: inherit; cursor: pointer; text-align: left; transition: transform 160ms ease, border-color 160ms ease, background 160ms ease, box-shadow 160ms ease; }
+.variant-chip:hover { border-color: var(--orange); background: var(--surface); transform: translateY(-1px); }
+.variant-chip.is-selected { border-color: var(--orange); background: color-mix(in srgb, var(--orange) 10%, var(--surface)); box-shadow: 0 0 0 1px var(--orange); }
+.variant-chip .chip-config { font-size: 0.85rem; font-weight: 750; color: var(--ink); }
+.variant-chip .chip-price { font-size: 0.74rem; font-weight: 600; color: var(--orange-deep); }
 .product-enquiry-actions { display: flex; flex-wrap: wrap; gap: .65rem; }
 .button--whatsapp { background: #16845a; color: white; }
 .button--whatsapp:hover { background: #0e6846; }
@@ -485,6 +493,11 @@ button, input { font: inherit; }
 :root[data-theme="dark"] .lightbox { border-color: var(--line); }
 :root[data-theme="dark"] .lightbox-arrow { background: #26343b; }
 :root[data-theme="dark"] .button--orange:hover { background: var(--orange-deep); color: var(--orange-action-ink); }
+:root[data-theme="dark"] .product-variant-picker { background: var(--surface); border-color: var(--line); }
+:root[data-theme="dark"] .variant-chip { background: #131a1f; border-color: var(--line); color: var(--ink); }
+:root[data-theme="dark"] .variant-chip:hover { border-color: var(--orange); background: #1a232a; }
+:root[data-theme="dark"] .variant-chip.is-selected { background: color-mix(in srgb, var(--orange) 16%, #131a1f); border-color: var(--orange); }
+:root[data-theme="dark"] .variant-chip .chip-config { color: var(--ink); }
 :root[data-theme="dark"] .hero-copy .eyebrow { background: color-mix(in srgb, var(--orange) 16%, var(--surface)); border-color: color-mix(in srgb, var(--orange) 38%, transparent); color: var(--orange-deep); box-shadow: 0 1px 2px rgb(0 0 0 / 25%); }
 :root[data-theme="dark"] .hero-copy .eyebrow::before { background: var(--orange); box-shadow: 0 0 6px color-mix(in srgb, var(--orange) 50%, transparent); }
 

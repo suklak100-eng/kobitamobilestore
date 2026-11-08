@@ -17,3 +17,20 @@
 .button--save{background:#167a59;color:white;border-color:#167a59;box-shadow:0 4px 14px rgba(22,122,89,0.22)}
 .button--save:hover{background:#105c43;border-color:#105c43}
 .button.is-loading{opacity:0.75;pointer-events:none;cursor:wait}
+.autofill-banner{margin:1rem 0 1.4rem;padding:0.9rem 1.1rem;border-left:4px solid var(--blue);background:rgba(27,111,174,0.08);border-radius:4px}
+.autofill-banner-content{display:flex;align-items:flex-start;gap:0.75rem}
+.autofill-icon{font-size:1.4rem;line-height:1}
+.autofill-banner strong{display:block;font-size:0.88rem;color:var(--ink)}
+.autofill-banner p{margin:0.25rem 0 0;font-size:0.78rem;color:var(--muted)}
+.variants-admin-card{margin:1.4rem 0;padding:1.2rem;border:1px solid var(--line);background:#fbf9f4;border-radius:4px}
+.variants-admin-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1rem}
+.variants-admin-head h4{margin:0 0 0.25rem;font-size:0.98rem}
+.variants-admin-head p{margin:0;color:var(--muted);font-size:0.76rem}
+.variants-list-container{display:grid;gap:0.65rem}
+.variant-item-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;align-items:flex-end;gap:0.75rem;padding:0.75rem;background:white;border:1px solid var(--line);border-radius:4px}
+.variant-field label{display:block;font-size:0.72rem;font-weight:700;margin-bottom:0.3rem;color:var(--muted)}
+.variant-field input{min-height:2.3rem !important;padding:0.4rem 0.6rem !important;font-size:0.82rem}
+.remove-variant-btn{height:2.3rem}
+.variants-empty-note{padding:1rem;text-align:center;color:var(--muted);font-size:0.8rem;background:white;border:1px dashed var(--line)}
+.field-dropdown-wrap{display:grid;gap:0.4rem}
+@media (max-width:640px){.variant-item-row{grid-template-columns:1fr 1fr}.variant-item-row .remove-variant-btn{grid-column:1/-1}}
