@@ -52,6 +52,17 @@ export async function buildSite(content = null) {
 
   const robots = `User-agent: *\nAllow: /\nDisallow: /catalog/\nDisallow: /admin/\nDisallow: /api/\n${siteOrigin ? `Sitemap: ${siteOrigin}/sitemap.xml\n` : ""}`;
   await writeFile(path.join(stagingRoot, "robots.txt"), robots, "utf8");
+
+  // Provide native 404.html for Vercel / static hosts
+  try {
+    await cp(path.join(stagingRoot, "404", "index.html"), path.join(stagingRoot, "404.html"));
+  } catch {}
+
+  // Provide root favicon.ico so browsers don't 404
+  try {
+    await cp(path.join(publicRoot, "assets", "kabita-logo.png"), path.join(stagingRoot, "favicon.ico"));
+  } catch {}
+
   await rm(previousRoot, { recursive: true, force: true });
   try { await rename(outputRoot, previousRoot); } catch {}
   await rename(stagingRoot, outputRoot);

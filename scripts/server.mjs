@@ -79,7 +79,27 @@ const types = {
 };
 const sessions = new Map();
 const loginAttempts = new Map();
-const sessionLifetimeSeconds = 8 * 60 * 60;
+const sessionLifetimeSeconds = 365 * 24 * 60 * 60; // 1 year persistent session
+
+function createSignedToken(username) {
+  const expires = Date.now() + sessionLifetimeSeconds * 1000;
+  const payload = `${username}.${expires}`;
+  const sig = createHmac("sha256", sessionSecret).update(payload).digest("base64url");
+  return `${payload}.${sig}`;
+}
+
+function verifySignedToken(token) {
+  if (!token || typeof token !== "string") return null;
+  const parts = token.split(".");
+  if (parts.length !== 3) return null;
+  const [username, expStr, sig] = parts;
+  const expires = Number(expStr);
+  if (!expires || expires < Date.now()) return null;
+  const expectedSig = createHmac("sha256", sessionSecret).update(`${username}.${expires}`).digest("base64url");
+  if (!safeEqual(sig, expectedSig)) return null;
+  if (!safeEqual(username, adminUsername)) return null;
+  return { username, expires };
+}
 const baseGallery = JSON.parse(await readFile(path.join(projectRoot, "src/data/gallery.json"), "utf8"));
 let siteContent = currentEditableContent(baseGallery);
 try {
@@ -126,7 +146,9 @@ function cookieValue(request, name) {
 }
 
 function getSession(request) {
-  const token = cookieValue(request, "kabita_admin");
+  const token = cookieValue(request, "kabita_admin") || request.headers["x-admin-token"] || "";
+  const verified = verifySignedToken(token);
+  if (verified) return { token, ...verified };
   const session = sessions.get(token);
   if (!session) return null;
   if (session.expires < Date.now()) { sessions.delete(token); return null; }
@@ -263,7 +285,8 @@ function checkOrigin(request, response) {
   return false;
 }
 
-async function handleApi(request, response, pathname) {
+async function handleApi(request, response, rawPathname) {
+  const pathname = rawPathname.replace(/\/+$/, "") || "/";
   response.setHeader("Cache-Control", "no-store");
   if (pathname === "/api/admin/session" && request.method === "GET") {
     const session = getSession(request);
@@ -275,7 +298,7 @@ async function handleApi(request, response, pathname) {
     if (!checkOrigin(request, response)) return true;
     const ip = request.socket.remoteAddress || "unknown";
     const attempts = loginAttempts.get(ip) || { count: 0, until: 0 };
-    if (attempts.until > Date.now() && attempts.count >= 6) { sendJson(response, 429, { error: "অনেকবার চেষ্টা হয়েছে। ১৫ মিনিট পরে আবার চেষ্টা করুন।" }); return true; }
+    if (attempts.until > Date.now() && attempts.count >= 10) { sendJson(response, 429, { error: "অনেকবার চেষ্টা হয়েছে। ১৫ মিনিট পরে আবার চেষ্টা করুন।" }); return true; }
     const body = await readJson(request);
     if (!body || typeof body !== "object" || Array.isArray(body)) { sendJson(response, 400, { error: "লগইনের তথ্য পাঠানো যায়নি।" }); return true; }
     if (!safeEqual(body.username || "", adminUsername) || !safeEqual(body.password || "", adminPassword)) {
@@ -284,19 +307,19 @@ async function handleApi(request, response, pathname) {
       sendJson(response, 401, { error: "ইউজারনেম বা পাসওয়ার্ড মিলছে না।" }); return true;
     }
     loginAttempts.delete(ip);
-    const token = randomBytes(32).toString("base64url");
-    sessions.set(token, { expires: Date.now() + sessionLifetimeSeconds * 1000 });
+    const token = createSignedToken(adminUsername);
+    sessions.set(token, { expires: Date.now() + sessionLifetimeSeconds * 1000, username: adminUsername });
     const secure = production ? "; Secure" : "";
-    response.setHeader("Set-Cookie", `kabita_admin=${encodeURIComponent(token)}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${sessionLifetimeSeconds}${secure}`);
-    sendJson(response, 200, { loggedIn: true }); return true;
+    response.setHeader("Set-Cookie", `kabita_admin=${encodeURIComponent(token)}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${sessionLifetimeSeconds}${secure}`);
+    sendJson(response, 200, { loggedIn: true, token, username: adminUsername }); return true;
   }
 
-  if (pathname.startsWith("/api/admin/")) {
+  if (pathname.startsWith("/api/admin")) {
     if (pathname === "/api/admin/logout" && request.method === "POST") {
       if (!checkOrigin(request, response)) return true;
       const session = getSession(request);
       if (session) sessions.delete(session.token);
-      response.setHeader("Set-Cookie", "kabita_admin=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0");
+      response.setHeader("Set-Cookie", "kabita_admin=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0");
       sendJson(response, 200, { loggedIn: false }); return true;
     }
     if (!requireAdmin(request, response)) return true;
@@ -415,15 +438,39 @@ const server = createServer(async (request, response) => {
     } else if (request.method !== "GET" && request.method !== "HEAD") {
       response.writeHead(405, { Allow: "GET, HEAD" }); response.end("Method not allowed"); return;
     }
-    const normalizedPath = pathname === "/admin" ? "/admin/" : pathname;
-    const candidate = path.resolve(outputRoot, `.${normalizedPath}`);
+    if (pathname === "/admin") {
+      response.writeHead(301, { Location: "/admin/" });
+      response.end();
+      return;
+    }
+    if (pathname === "/favicon.ico") {
+      const fav = path.join(publicRoot, "assets", "kabita-logo.png");
+      try {
+        const info = await stat(fav);
+        response.writeHead(200, { "Content-Type": "image/png", "Content-Length": info.size, "Cache-Control": "public, max-age=86400" });
+        createReadStream(fav).pipe(response);
+        return;
+      } catch {}
+    }
+    const candidate = path.resolve(outputRoot, `.${pathname}`);
     if (candidate !== outputRoot && !candidate.startsWith(`${outputRoot}${path.sep}`)) { response.writeHead(403); response.end("Forbidden"); return; }
     let filePath = candidate;
     try { const info = await stat(filePath); if (info.isDirectory()) filePath = path.join(filePath, "index.html"); }
     catch { if (!path.extname(filePath)) filePath = path.join(filePath, "index.html"); }
     let info;
-    try { info = await stat(filePath); if (!info.isFile()) throw new Error("Not a file"); }
-    catch { filePath = path.join(outputRoot, "404", "index.html"); info = await stat(filePath); response.statusCode = 404; }
+    try {
+      info = await stat(filePath);
+      if (!info.isFile()) throw new Error("Not a file");
+    } catch {
+      if (path.extname(candidate)) {
+        response.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
+        response.end("Not found");
+        return;
+      }
+      filePath = path.join(outputRoot, "404", "index.html");
+      info = await stat(filePath);
+      response.statusCode = 404;
+    }
     response.setHeader("Content-Type", types[path.extname(filePath).toLowerCase()] || "application/octet-stream");
     response.setHeader("Content-Length", info.size);
     if (request.method === "HEAD") { response.end(); return; }
