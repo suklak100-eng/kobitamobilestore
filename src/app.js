@@ -319,3 +319,26 @@ document.querySelectorAll(".product-variant-picker").forEach((picker) => {
     });
   });
 });
+
+// Product Gallery Interactive Thumbnail Switcher (Flipkart/Amazon style)
+document.querySelectorAll(".product-gallery-container").forEach((gallery) => {
+  const thumbs = gallery.querySelectorAll(".product-gallery-thumbs .thumb-btn");
+  const mainImg = gallery.querySelector("#product-main-image");
+  if (!thumbs.length || !mainImg) return;
+
+  thumbs.forEach((btn) => {
+    const activate = () => {
+      thumbs.forEach((t) => {
+        t.classList.remove("is-active");
+        t.setAttribute("aria-selected", "false");
+      });
+      btn.classList.add("is-active");
+      btn.setAttribute("aria-selected", "true");
+      if (btn.dataset.largeSrc) {
+        mainImg.src = btn.dataset.largeSrc;
+      }
+    };
+    btn.addEventListener("click", activate);
+    btn.addEventListener("mouseenter", activate);
+  });
+});

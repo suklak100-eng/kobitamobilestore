@@ -332,7 +332,7 @@ function productCatalog(photos) {
 }
 
 function productDetail(item) {
-  const images = (item.images || []).filter(Boolean).slice(0, 3);
+  const images = (item.images || []).filter(Boolean).slice(0, 5);
   const variants = Array.isArray(item.variants) ? item.variants : [];
   const initialVariant = variants[0] || null;
   const initialPrice = initialVariant?.price || item.price || "";
@@ -346,7 +346,27 @@ function productDetail(item) {
   return `<main id="main-content" class="wrap page-main sample-detail-page product-detail-page">
     ${breadcrumb([{ href: "/", label: "Home" }, { href: "/catalog/", label: "Browse phones" }, { label: item.name }])}
     <section class="sample-detail-layout">
-      <div class="product-photo-gallery">${images.length ? images.map((src, index) => `<figure><img src="${esc(src)}" alt="${esc(item.name)} photo ${index + 1}"${index ? " loading=\"lazy\"" : ""}></figure>`).join("") : `<div class="sample-product-art">${deviceIllustration({ brand: item.brand, color: "orange" })}</div>`}</div>
+      <div class="product-gallery-container">
+        ${images.length ? `
+          <div class="product-gallery-main">
+            <img id="product-main-image" src="${esc(images[0])}" alt="${esc(item.name)} photo 1" loading="eager">
+          </div>
+          ${images.length > 1 ? `
+            <div class="product-gallery-thumbs" role="tablist" aria-label="Phone image gallery">
+              ${images.map((src, index) => `
+                <button type="button" class="thumb-btn ${index === 0 ? "is-active" : ""}"
+                        role="tab"
+                        aria-selected="${index === 0 ? "true" : "false"}"
+                        data-large-src="${esc(src)}"
+                        data-thumb-index="${index}"
+                        aria-label="${esc(item.name)} photo ${index + 1}">
+                  <img src="${esc(src)}" alt="${esc(item.name)} photo ${index + 1} thumbnail">
+                </button>
+              `).join("")}
+            </div>
+          ` : ""}
+        ` : `<div class="sample-product-art">${deviceIllustration({ brand: item.brand, color: "orange" })}</div>`}
+      </div>
       <div class="sample-detail-copy">
         ${tag(item.brand)}
         <h1>${esc(item.name)}</h1>

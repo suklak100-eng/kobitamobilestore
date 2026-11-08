@@ -34,3 +34,20 @@
 .variants-empty-note{padding:1rem;text-align:center;color:var(--muted);font-size:0.8rem;background:white;border:1px dashed var(--line)}
 .field-dropdown-wrap{display:grid;gap:0.4rem}
 @media (max-width:640px){.variant-item-row{grid-template-columns:1fr 1fr}.variant-item-row .remove-variant-btn{grid-column:1/-1}}
+.product-images-card{margin:1.4rem 0;padding:1.2rem;border:1px solid var(--line);background:#fcfbf7;border-radius:4px}
+.product-images-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1rem;flex-wrap:wrap}
+.product-images-head h4{margin:0 0 0.25rem;font-size:0.98rem}
+.product-images-head p{margin:0;color:var(--muted);font-size:0.76rem}
+.product-edit-images--five{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0.75rem}
+.image-slot--five{display:flex;flex-direction:column;padding:0.7rem;border:1px solid var(--line);background:white;border-radius:4px}
+.image-slot-badge{font-size:0.72rem;font-weight:750;color:var(--ink);margin-bottom:0.35rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.image-slot-preview-wrap{width:100%;height:8.5rem;background:#fbf9f4;border:1px solid var(--line);border-radius:3px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.image-slot-preview-wrap img{width:100%;height:100%;object-fit:contain;background:white}
+.image-slot-hint{font-size:0.68rem;color:var(--muted);margin:0.35rem 0 0.45rem;min-height:1rem}
+.image-slot-controls{display:flex;flex-direction:column;gap:0.4rem;margin-top:auto}
+.image-url-input{min-height:2.1rem !important;padding:0.35rem 0.5rem !important;font-size:0.7rem !important;font-family:monospace}
+.image-slot-btns{display:flex;gap:0.35rem}
+.image-slot-btns .upload-btn-label{flex:1;text-align:center;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;margin:0}
+.image-slot-btns .is-danger{padding:0.35rem 0.5rem}
+@media (max-width:1100px){.product-edit-images--five{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:640px){.product-edit-images--five{grid-template-columns:1fr}}

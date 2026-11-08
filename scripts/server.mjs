@@ -185,6 +185,15 @@ function cleanLocalImage(value, optional = false) {
   return image;
 }
 
+function cleanProductImage(value, optional = false) {
+  const image = cleanText(value, 2000);
+  if (optional && !image) return "";
+  if (/^\/(?:assets|uploads)\/[A-Za-z0-9._/-]+$/.test(image) && !image.includes("..")) return image;
+  if (/^https?:\/\/[A-Za-z0-9.-]+(?::\d+)?\/[A-Za-z0-9._~:/?#[\]@!$&'()*+,;=%-]+$/i.test(image)) return image;
+  if (/^data:image\/(?:png|jpeg|jpg|webp|svg\+xml);base64,[A-Za-z0-9+/=]+$/i.test(image)) return image;
+  throw Object.assign(new Error("ছবির path বা URL ঠিক নেই।"), { statusCode: 400 });
+}
+
 function cleanSecureUrl(value, hosts, label) {
   const raw = cleanText(value, 600);
   let url;
@@ -228,7 +237,7 @@ function normalizeContent(raw) {
     return {
       id: cleanText(item.id, 80, `phone-${index + 1}`), slug, brand: cleanText(item.brand, 80, "Phone"), model: cleanText(item.model, 120),
       name: cleanText(item.name, 180, "Phone"), price: cleanText(item.price, 20).replace(/[^0-9,.]/g, ""), description: cleanText(item.description, 1000),
-      specs, variants, images: Array.isArray(item.images) ? item.images.slice(0, 3).map((src) => cleanLocalImage(src, true)).filter(Boolean) : [], published: item.published !== false,
+      specs, variants, images: Array.isArray(item.images) ? item.images.slice(0, 5).map((src) => cleanProductImage(src, true)).filter(Boolean) : [], published: item.published !== false,
     };
   }) : [];
   const colors = raw.theme || {};
@@ -427,7 +436,7 @@ function headers(response) {
   response.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
   response.setHeader("X-Frame-Options", "DENY");
   response.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
-  response.setHeader("Content-Security-Policy", "default-src 'self'; img-src 'self' blob: data:; font-src 'self'; style-src 'self'; script-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'");
+  response.setHeader("Content-Security-Policy", "default-src 'self'; img-src 'self' blob: data: https:; font-src 'self'; style-src 'self'; script-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'");
   response.setHeader("Cache-Control", "no-cache");
 }
 

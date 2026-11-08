@@ -1,4 +1,4 @@
-import { PHONE_BRANDS, PHONE_DATABASE } from "./phone-db.js";
+import { PHONE_BRANDS, PHONE_DATABASE, getPhoneImages } from "./phone-db.js";
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -116,6 +116,18 @@ function renderProducts() {
 }
 
 function newId(prefix) { return `${prefix}-${crypto.randomUUID?.() || Date.now().toString(36)}`; }
+
+function renderImageSlots() {
+  if (!editingProduct) return;
+  if (!Array.isArray(editingProduct.images)) editingProduct.images = [];
+  for (let i = 0; i < 5; i++) {
+    const src = editingProduct.images[i] || "";
+    const preview = $(`[data-product-preview="${i}"]`);
+    if (preview) preview.src = src || "/assets/kabita-logo.png";
+    const urlInput = $(`[data-product-url="${i}"]`);
+    if (urlInput) urlInput.value = src;
+  }
+}
 
 function renderVariantsEditor() {
   const container = $("#variants-list-container");
@@ -245,12 +257,34 @@ function setupBrandModelHandlers() {
     }
     renderVariantsEditor();
 
+    // Auto-fill 5 images from Indian retail/manufacturer database
+    const autoImages = itemData.images || getPhoneImages(selectedBrand, selectedModel);
+    if (Array.isArray(autoImages) && autoImages.length > 0) {
+      editingProduct.images = [...autoImages];
+      renderImageSlots();
+    }
+
     // Show banner & toast
     if (banner) {
       if (bannerTitle) bannerTitle.textContent = `${itemData.name} — ₹${itemData.price}`;
       banner.hidden = false;
     }
-    toast(`⚡ ${itemData.name}-এর Indian retail দাম, স্পেক্স ও ${editingProduct.variants.length}টি ভ্যারিয়েন্ট অটোফিল হয়েছে!`);
+    toast(`⚡ ${itemData.name}-এর Indian retail দাম, স্পেক্স, ৫টি ছবি ও ${editingProduct.variants.length}টি ভ্যারিয়েন্ট অটোফিল হয়েছে!`);
+  });
+
+  // Fetch / Refresh 5 images button
+  $("#fetch-images-btn")?.addEventListener("click", () => {
+    const brand = brandSelect ? (brandSelect.value === "__custom__" ? customBrandInput.value.trim() : brandSelect.value.trim()) : "";
+    const model = modelSelect ? (modelSelect.value === "__custom__" ? customModelInput.value.trim() : modelSelect.value.trim()) : "";
+    if (!brand) {
+      toast(currentAdminLang === "bn" ? "প্রথমে ব্র্যান্ড নির্বাচন করুন।" : "Please select brand first.", true);
+      return;
+    }
+    const images = getPhoneImages(brand, model);
+    editingProduct.images = [...images];
+    renderImageSlots();
+    markDirty();
+    toast(currentAdminLang === "bn" ? `⚡ ${brand} ${model || ""}-এর ৫টি ছবি লোড হয়েছে!` : `⚡ 5 images loaded for ${brand} ${model}!`);
   });
 
   // Variant addition & removal handlers
@@ -380,16 +414,45 @@ function showProductEditor(item = null) {
       <div class="variants-list-container" id="variants-list-container"></div>
     </div>
 
-    <h3>সর্বোচ্চ ৩টি ফোনের ছবি</h3>
-    <div class="product-edit-images">
-      ${[0, 1, 2].map((index) => `
-        <label class="image-slot">
-          <img data-product-preview="${index}" src="${esc(editingProduct.images?.[index] || "/assets/kabita-logo.png")}" alt="Phone image ${index + 1}">
-          <span>Photo ${index + 1}</span>
-          <input type="file" data-product-upload="${index}" accept="image/jpeg,image/png,image/webp">
-          <button type="button" class="small-button" data-action="clear-product-image" data-index="${index}">ছবি সরান</button>
-        </label>
-      `).join("")}
+    <!-- Flipkart / Amazon style 5-image gallery editor -->
+    <div class="product-images-card">
+      <div class="product-images-head">
+        <div>
+          <h4>📸 ফোনের ৫টি মূল ছবি (Flipkart / Amazon Style ৫টি কোণ)</h4>
+          <p>মডেল সিলেক্ট করলেই ৫টি দিক (১. সামনে, ২. পেছনে, ৩. অ্যাঙ্গেল, ৪. ক্যামেরা ফিচার্স ও ৫. ডিসপ্লে লুক) ইন্টারনেট থেকে অটোফিল হবে। চাইলে যেকোনো ছবির লিংক বা ফাইল পরিবর্তন করতে পারেন।</p>
+        </div>
+        <button type="button" class="button button--quiet" id="fetch-images-btn" style="min-height:2.2rem;font-size:0.75rem;">
+          ⚡ ইন্টারনেট থেকে ৫টি ছবি লোড করুন
+        </button>
+      </div>
+
+      <div class="product-edit-images product-edit-images--five">
+        ${[
+          { index: 0, label: "১. সামনের দিক (Front View)", hint: "ফুল ডিসপ্লে ও পাতলা বেজেল" },
+          { index: 1, label: "২. পেছনের দিক (Back View)", hint: "ক্যামেরা বাম্প ও ব্যাক প্যানেল" },
+          { index: 2, label: "৩. অ্যাঙ্গেল (Angle / Duo)", hint: "সামনে ও পেছনে একসাথে" },
+          { index: 3, label: "৪. ক্যামেরা ও ফিচার্স (Features)", hint: "ক্যামেরা লেন্স ও অপটিক্স ক্লোজ-আপ" },
+          { index: 4, label: "৫. ডিসপ্লে ও লুক (Display / In-Hand)", hint: "কার্ভড স্ক্রিন ও প্রিমিয়াম লুক" },
+        ].map(({ index, label, hint }) => `
+          <div class="image-slot image-slot--five" data-slot-index="${index}">
+            <div class="image-slot-badge">${esc(label)}</div>
+            <div class="image-slot-preview-wrap">
+              <img data-product-preview="${index}" src="${esc(editingProduct.images?.[index] || "/assets/kabita-logo.png")}" alt="${esc(label)}">
+            </div>
+            <span class="image-slot-hint">${esc(hint)}</span>
+            <div class="image-slot-controls">
+              <input type="text" data-product-url="${index}" value="${esc(editingProduct.images?.[index] || "")}" placeholder="ছবির URL (https://...)" class="image-url-input" title="ছবির অনলাইন URL">
+              <div class="image-slot-btns">
+                <label class="small-button upload-btn-label">
+                  <span>ফাইল</span>
+                  <input type="file" data-product-upload="${index}" accept="image/jpeg,image/png,image/webp" style="display:none">
+                </label>
+                <button type="button" class="small-button is-danger" data-action="clear-product-image" data-index="${index}" title="ছবি সরান">সরান ×</button>
+              </div>
+            </div>
+          </div>
+        `).join("")}
+      </div>
     </div>
 
     <div class="editor-actions">
@@ -653,7 +716,16 @@ $("#dashboard").addEventListener("click", async (event) => {
   if (action === "edit-product") showProductEditor(content.products.find((item) => item.id === id));
   if (action === "delete-product" && confirm("এই ফোনটি catalogue থেকে সরাবেন?")) { content.products = content.products.filter((item) => item.id !== id); renderProducts(); markDirty(); }
   if (action === "close-product") { $("#product-form").hidden = true; editingProduct = null; }
-  if (action === "clear-product-image" && editingProduct) { editingProduct.images[Number(index)] = ""; const img = $(`[data-product-preview="${index}"]`); img.src = "/assets/kabita-logo.png"; }
+  if (action === "clear-product-image" && editingProduct) {
+    const idx = Number(index);
+    if (!Array.isArray(editingProduct.images)) editingProduct.images = [];
+    editingProduct.images[idx] = "";
+    const img = $(`[data-product-preview="${idx}"]`);
+    if (img) img.src = "/assets/kabita-logo.png";
+    const urlInp = $(`[data-product-url="${idx}"]`);
+    if (urlInp) urlInp.value = "";
+    markDirty();
+  }
   if (action === "edit-post") showPostEditor(content.posts.find((item) => item.slug === id));
   if (action === "delete-post" && confirm("এই post-টি ওয়েবসাইট থেকে মুছবেন?")) { content.posts = content.posts.filter((item) => item.slug !== id); renderPosts(); markDirty(); }
   if (action === "close-post") { $("#post-form").hidden = true; editingPost = null; }
@@ -702,6 +774,14 @@ $("#product-form").addEventListener("submit", (event) => {
   editingProduct.specs = String(form.get("specs") || "").split(/\r?\n/).map((line) => { const [label, ...value] = line.split(":"); return { label: label.trim(), value: value.join(":").trim() }; }).filter((spec) => spec.label && spec.value);
   editingProduct.published = Boolean(form.get("published"));
 
+  // Sync 5 image URLs from the DOM slots
+  const images = [];
+  for (let i = 0; i < 5; i++) {
+    const val = ($(`[data-product-url="${i}"]`)?.value || editingProduct.images?.[i] || "").trim();
+    if (val) images.push(val);
+  }
+  editingProduct.images = images;
+
   const index = content.products.findIndex((item) => item.id === editingProduct.id);
   if (index < 0) content.products.push(editingProduct); else content.products[index] = editingProduct;
   content.catalogMode = "live";
@@ -712,14 +792,29 @@ $("#product-form").addEventListener("submit", (event) => {
   toast(currentAdminLang === "bn" ? "ফোনটি catalogue-এ যোগ/আপডেট হয়েছে। স্থায়ী করতে উপরের “সংরক্ষণ ও প্রকাশ” বাটনে চাপুন।" : "Phone updated. Click 'Save & Publish' at the top to make it live.");
 });
 
+$("#product-form").addEventListener("input", (event) => {
+  const urlInp = event.target.closest("[data-product-url]");
+  if (!urlInp || !editingProduct) return;
+  const idx = Number(urlInp.dataset.productUrl);
+  if (!Array.isArray(editingProduct.images)) editingProduct.images = [];
+  editingProduct.images[idx] = urlInp.value.trim();
+  const preview = $(`[data-product-preview="${idx}"]`);
+  if (preview) preview.src = urlInp.value.trim() || "/assets/kabita-logo.png";
+  markDirty();
+});
+
 $("#product-form").addEventListener("change", async (event) => {
   const input = event.target.closest("[data-product-upload]");
   if (!input || !input.files?.[0] || !editingProduct) return;
   const index = Number(input.dataset.productUpload);
   try {
     const src = await uploadFile(input.files[0]);
+    if (!Array.isArray(editingProduct.images)) editingProduct.images = [];
     editingProduct.images[index] = src;
-    $(`[data-product-preview="${index}"]`).src = src;
+    const preview = $(`[data-product-preview="${index}"]`);
+    if (preview) preview.src = src;
+    const urlInp = $(`[data-product-url="${index}"]`);
+    if (urlInp) urlInp.value = src;
     markDirty();
   } catch (error) { toast(error.message, true); }
 });

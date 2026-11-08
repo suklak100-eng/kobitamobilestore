@@ -31,6 +31,13 @@ export const PHONE_DATABASE = {
         { label: "Durability", value: "IP68 Dust and Water Resistance" },
         { label: "Network & SIM", value: "5G Dual SIM, Wi-Fi 6, Bluetooth 5.4" }
       ],
+      images: [
+        "https://rukminim2.flixcart.com/image/832/832/xif0q/mobile/f/m/m/-original-imah3hvk9kgfsads.jpeg",
+        "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/product/1740399203299/zip/img/vivo-v40-phone2-line1.png",
+        "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/product/1740399203299/zip/img/vivo-v40-with-zeiss-pro-portrait-in.jpg",
+        "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/product/1740399203299/zip/img/vivo-v40-with-zeiss-all-main-camera.jpg",
+        "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/product/1740399203299/zip/img/vivo-v40-with-india-colors-design.jpg"
+      ],
       variants: [
         { ram: "8 GB", storage: "128 GB", price: "34999", label: "8 GB RAM · 128 GB Storage" },
         { ram: "8 GB", storage: "256 GB", price: "36999", label: "8 GB RAM · 256 GB Storage" },
@@ -50,6 +57,13 @@ export const PHONE_DATABASE = {
         { label: "Battery & Charging", value: "5500 mAh Battery, 80W FlashCharge" },
         { label: "Operating System", value: "Funtouch OS 14 (Android 14)" },
         { label: "Build", value: "IP68 Water & Dust Resistant, 3D Curved Glass" }
+      ],
+      images: [
+        "https://rukminim2.flixcart.com/image/832/832/xif0q/mobile/4/4/6/-original-imah3hvkn8vggtmg.jpeg",
+        "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/product/1740399203299/zip/img/vivo-v40-phone2-line2.png",
+        "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/product/1740399203299/zip/img/vivo-v40-with-professional-portrait-cameras-in.jpg",
+        "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/product/1740399203299/zip/img/vivo-v40-with-dust-and-water-resistance-highline.jpg",
+        "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/product/1740399203299/zip/img/vivo-v40-with-snapdragon-7-gen-3-chip.jpg"
       ],
       variants: [
         { ram: "8 GB", storage: "256 GB", price: "49999", label: "8 GB RAM · 256 GB Storage" },
@@ -159,6 +173,13 @@ export const PHONE_DATABASE = {
         { label: "Front Camera", value: "12MP Dual Pixel AF Selfie Camera" },
         { label: "Battery & Charging", value: "4000 mAh Battery with Fast Wireless & 25W Wired Charging" },
         { label: "Durability", value: "IP68 Water & Dust Resistant, Armor Aluminum 2.0" }
+      ],
+      images: [
+        "https://upload.wikimedia.org/wikipedia/commons/e/e5/S24_Onyx_Black.png",
+        "https://upload.wikimedia.org/wikipedia/commons/3/30/Samsung_Galaxy_S24_%28webtekno%29_001.png",
+        "https://upload.wikimedia.org/wikipedia/commons/8/80/Samsung_Galaxy_S24_%28webtekno%29_002.png",
+        "https://upload.wikimedia.org/wikipedia/commons/c/cc/Samsung_Galaxy_S24_%28webtekno%29_003.png",
+        "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&auto=format&fit=crop&q=80"
       ],
       variants: [
         { ram: "8 GB", storage: "128 GB", price: "64999", label: "8 GB RAM · 128 GB Storage" },
@@ -647,6 +668,13 @@ export const PHONE_DATABASE = {
         { label: "Controls", value: "Camera Control Button + Action Button" },
         { label: "Durability", value: "IP68 Water Resistance, Ceramic Shield front" }
       ],
+      images: [
+        "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=800&auto=format&fit=crop&q=80",
+        "https://upload.wikimedia.org/wikipedia/commons/7/72/About_iPhone_16_Ultramarine.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/3/39/About_iPhone_16_in_Pink.jpg",
+        "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=80"
+      ],
       variants: [
         { ram: "8 GB", storage: "128 GB", price: "79900", label: "128 GB Storage" },
         { ram: "8 GB", storage: "256 GB", price: "89900", label: "256 GB Storage" },
@@ -814,3 +842,117 @@ export const PHONE_DATABASE = {
     }
   ]
 };
+
+export const BRAND_ASSETS = {
+  "Vivo": [
+    "https://rukminim2.flixcart.com/image/832/832/xif0q/mobile/f/m/m/-original-imah3hvk9kgfsads.jpeg",
+    "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/product/1740399203299/zip/img/vivo-v40-phone2-line1.png",
+    "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/product/1740399203299/zip/img/vivo-v40-with-zeiss-pro-portrait-in.jpg",
+    "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/product/1740399203299/zip/img/vivo-v40-with-zeiss-all-main-camera.jpg",
+    "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/product/1740399203299/zip/img/vivo-v40-with-india-colors-design.jpg"
+  ],
+  "Samsung": [
+    "https://upload.wikimedia.org/wikipedia/commons/e/e5/S24_Onyx_Black.png",
+    "https://upload.wikimedia.org/wikipedia/commons/3/30/Samsung_Galaxy_S24_%28webtekno%29_001.png",
+    "https://upload.wikimedia.org/wikipedia/commons/8/80/Samsung_Galaxy_S24_%28webtekno%29_002.png",
+    "https://upload.wikimedia.org/wikipedia/commons/c/cc/Samsung_Galaxy_S24_%28webtekno%29_003.png",
+    "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&auto=format&fit=crop&q=80"
+  ],
+  "Apple": [
+    "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=800&auto=format&fit=crop&q=80",
+    "https://upload.wikimedia.org/wikipedia/commons/7/72/About_iPhone_16_Ultramarine.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/3/39/About_iPhone_16_in_Pink.jpg",
+    "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=80"
+  ],
+  "OnePlus": [
+    "https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1605236453806-6ff36851218e?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1567581935884-3349723552ca?w=800&auto=format&fit=crop&q=80"
+  ],
+  "Redmi": [
+    "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=800&auto=format&fit=crop&q=80"
+  ],
+  "Realme": [
+    "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=800&auto=format&fit=crop&q=80"
+  ],
+  "OPPO": [
+    "https://images.unsplash.com/photo-1567581935884-3349723552ca?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=80"
+  ],
+  "Motorola": [
+    "https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1605236453806-6ff36851218e?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=800&auto=format&fit=crop&q=80"
+  ],
+  "iQOO": [
+    "https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=80"
+  ],
+  "POCO": [
+    "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1605236453806-6ff36851218e?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=800&auto=format&fit=crop&q=80"
+  ],
+  "Nothing": [
+    "https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1567581935884-3349723552ca?w=800&auto=format&fit=crop&q=80"
+  ],
+  "Infinix": [
+    "https://images.unsplash.com/photo-1567581935884-3349723552ca?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=800&auto=format&fit=crop&q=80"
+  ],
+  "Tecno": [
+    "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=800&auto=format&fit=crop&q=80"
+  ],
+  "Default": [
+    "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=80"
+  ]
+};
+
+export function getPhoneImages(brand, modelName = "") {
+  if (!brand) return BRAND_ASSETS["Default"];
+  const brandList = PHONE_DATABASE[brand] || [];
+  const modelObj = brandList.find((m) => m.model.toLowerCase() === String(modelName).trim().toLowerCase());
+  if (modelObj && Array.isArray(modelObj.images) && modelObj.images.length === 5) {
+    return [...modelObj.images];
+  }
+  const fallback = BRAND_ASSETS[brand] || BRAND_ASSETS["Default"];
+  return [...fallback];
+}
+
+
