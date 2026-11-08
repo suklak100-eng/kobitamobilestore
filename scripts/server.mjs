@@ -437,6 +437,6 @@ const server = createServer(async (request, response) => {
 
 server.listen(port, host, () => {
   console.log(`KABITA MOBILE STORES is ready at http://${host}:${port}`);
-  console.log(loopbackHost ? `Local demo login: ${demoUsername} / ${demoPassword}` : "Admin credentials loaded from the server environment.");
+  console.log(adminUsername !== demoUsername ? `Admin login user: ${adminUsername}` : `Local demo login: ${demoUsername} / ${demoPassword}`);
   console.log("Press Ctrl+C to stop.");
 });
